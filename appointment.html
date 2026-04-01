@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book an appointment at New Health City Hospital & Research Center, Nagpur. Available 24/7 for pediatric and critical care consultations." />
+  <title>Book Appointment | New Health City Hospital & Research Center</title>
+
+
+  <style>
+    :root {
+      --c-primary:#45b39d;--c-primary-dark:#379683;--c-primary-light:#6fcfc0;
+      --c-primary-pale:#e8f8f5;--c-primary-deep:#2c7a68;
+      --c-white:#fff;--c-off-white:#f8fafb;--c-light-bg:#f2f6f5;
+      --c-border:#e4eceb;--c-text:#2d3a39;--c-muted:#677a78;
+      --c-dark:#1a2e2c;--c-footer:#152622;
+      --c-success:#27ae60;--c-error:#e74c3c;--c-gold:#f5a623;
+      --font-body:'Poppins',sans-serif;--font-heading:'Playfair Display',serif;
+      --r-sm:6px;--r-md:12px;--r-lg:18px;--r-xl:28px;
+      --sh-sm:0 2px 10px rgba(0,0,0,.06);--sh-md:0 6px 28px rgba(0,0,0,.10);
+      --sh-lg:0 16px 56px rgba(0,0,0,.13);--sh-teal:0 8px 28px rgba(69,179,157,.30);
+      --tr:.28s cubic-bezier(.4,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--font-body);color:var(--c-text);background:var(--c-white);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit;transition:color var(--tr)}
+    ul{list-style:none}
+    address{font-style:normal}
+    button,input,select,textarea{font-family:var(--font-body)}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--c-light-bg)}
+    ::-webkit-scrollbar-thumb{background:var(--c-primary);border-radius:3px}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* TOP BAR */
+    .top-bar{background:var(--c-light-bg);border-bottom:1px solid var(--c-border);padding:9px 0;font-size:.8rem;color:var(--c-muted)}
+    .top-bar__inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .top-bar__left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .top-bar__item{display:flex;align-items:center;gap:6px;color:var(--c-muted);font-weight:500}
+    .top-bar__item:hover{color:var(--c-primary)}
+    .top-bar__item--div{padding-left:20px;border-left:1px solid var(--c-border)}
+    .top-bar__icon{width:14px;height:14px;color:var(--c-primary)}
+    .top-bar__right{display:flex;gap:6px}
+    .social-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--c-primary);color:#fff;border-radius:var(--r-sm);transition:background var(--tr),transform var(--tr)}
+    .social-btn svg{width:15px;height:15px}
+    .social-btn:hover{background:var(--c-primary-dark);transform:translateY(-2px)}
+
+    /* HEADER */
+    .header{position:sticky;top:0;z-index:900;background:#fff;box-shadow:var(--sh-sm);transition:box-shadow var(--tr)}
+    .header--scrolled{box-shadow:var(--sh-md)}
+    .header__inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}
+    .logo{display:inline-flex;align-items:center;position:relative;z-index:1;flex-shrink:0}
+    .logo__accent{position:absolute;left:-14px;top:-10px;width:110px;height:65px;background:var(--c-primary);clip-path:polygon(0 0,85% 0,100% 100%,0% 100%);z-index:-1;border-radius:0 0 0 var(--r-sm)}
+    .logo__box{display:flex;align-items:center;gap:10px}
+    .logo__emblem{width:44px;height:44px;flex-shrink:0}
+    .logo__name{font-size:.98rem;font-weight:700;color:var(--c-dark);line-height:1.2}
+    .logo__sub{font-size:.65rem;color:var(--c-muted)}
+    .nav__list{display:flex;align-items:center;gap:4px}
+    .nav__link{position:relative;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--c-muted);padding:6px 10px;border-radius:var(--r-sm);transition:color var(--tr);white-space:nowrap}
+    .nav__link::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%) scaleX(0);width:calc(100% - 20px);height:2px;background:var(--c-primary);border-radius:2px;transition:transform var(--tr)}
+    .nav__link:hover,.nav__link.active{color:var(--c-primary)}
+    .nav__link:hover::after,.nav__link.active::after{transform:translateX(-50%) scaleX(1)}
+    .nav__link--cta{background:var(--c-primary);color:#fff!important;border-radius:50px;padding:8px 18px!important;box-shadow:var(--sh-teal)}
+    .nav__link--cta:hover{background:var(--c-primary-dark)}
+    .nav__link--cta::after{display:none}
+    .hamburger{display:none;flex-direction:column;justify-content:space-between;width:26px;height:18px;background:none;border:none;cursor:pointer;flex-shrink:0}
+    .hamburger__line{display:block;width:100%;height:2px;background:var(--c-dark);border-radius:2px;transition:transform var(--tr),opacity var(--tr)}
+    .hamburger.is-open .hamburger__line:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .hamburger.is-open .hamburger__line:nth-child(2){opacity:0}
+    .hamburger.is-open .hamburger__line:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+    .nav.is-open{display:flex!important}
+
+    /* PAGE HERO */
+    .page-hero{position:relative;background:linear-gradient(135deg,var(--c-dark) 0%,#0f2420 50%,var(--c-primary-deep) 100%);padding:80px 0 100px;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(69,179,157,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(69,179,157,.07) 1px,transparent 1px);background-size:50px 50px}
+    .ph-circle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(69,179,157,.15),transparent 70%)}
+    .ph-circle-1{top:-80px;right:-80px;width:380px;height:380px}
+    .ph-circle-2{bottom:-60px;left:10%;width:260px;height:260px;background:radial-gradient(circle,rgba(69,179,157,.10),transparent 70%)}
+    .ph-inner{position:relative;z-index:1;text-align:center}
+    .ph-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(69,179,157,.15);border:1px solid rgba(69,179,157,.35);color:var(--c-primary-light);font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:7px 18px;border-radius:50px;margin-bottom:22px}
+    .ph-tag::before{content:'';width:7px;height:7px;background:var(--c-primary-light);border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .ph-title{font-family:var(--font-heading);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;color:#fff;line-height:1.12;margin-bottom:16px}
+    .ph-title span{color:var(--c-primary-light)}
+    .ph-sub{font-size:1rem;color:rgba(255,255,255,.60);max-width:540px;margin:0 auto 36px}
+    .breadcrumb{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.45)}
+    .breadcrumb a{color:var(--c-primary-light)}
+    .breadcrumb a:hover{color:#fff}
+    .breadcrumb__sep{color:rgba(255,255,255,.25)}
+
+    /* STEPS BAR */
+    .steps-bar{background:#fff;border-bottom:1px solid var(--c-border);position:sticky;top:78px;z-index:50;box-shadow:var(--sh-sm)}
+    .steps-bar__inner{display:flex;align-items:stretch;max-width:800px;margin:0 auto}
+    .step-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:18px 10px;font-size:.82rem;font-weight:600;letter-spacing:.04em;color:var(--c-muted);border-bottom:3px solid transparent;cursor:default;transition:all var(--tr)}
+    .step-tab.active{color:var(--c-primary);border-bottom-color:var(--c-primary)}
+    .step-tab.done{color:var(--c-primary-dark);border-bottom-color:var(--c-primary-dark)}
+    .step-num{width:26px;height:26px;border-radius:50%;background:var(--c-light-bg);color:var(--c-muted);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;transition:all var(--tr)}
+    .step-tab.active .step-num{background:var(--c-primary);color:#fff;box-shadow:0 0 0 3px rgba(69,179,157,.2)}
+    .step-tab.done .step-num{background:var(--c-primary-dark);color:#fff}
+
+    /* MAIN LAYOUT */
+    .appt-wrapper{background:var(--c-off-white);padding:60px 0 100px}
+    .appt-layout{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
+
+    /* FORM CARD */
+    .form-card{background:#fff;border-radius:var(--r-xl);box-shadow:var(--sh-md);overflow:hidden}
+    .fc-head{background:linear-gradient(135deg,var(--c-primary-deep),var(--c-primary));padding:32px 36px;position:relative;overflow:hidden}
+    .fc-head::after{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06)}
+    .fc-head-tag{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px;display:block}
+    .fc-head h2{font-family:var(--font-heading);font-size:1.6rem;font-weight:900;color:#fff;line-height:1.2;position:relative;z-index:1}
+    .fc-head p{font-size:.85rem;color:rgba(255,255,255,.65);margin-top:8px;position:relative;z-index:1}
+
+    /* Form Steps */
+    .form-step{display:none;padding:36px;animation:stepIn .4s cubic-bezier(.16,1,.3,1) both}
+    .form-step.active{display:block}
+    @keyframes stepIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+
+    .sec-title{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c-primary);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--c-border);display:flex;align-items:center;gap:8px}
+    .sec-title svg{width:14px;height:14px}
+
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .form-group{display:flex;flex-direction:column;gap:7px}
+    .form-group.span-2{grid-column:span 2}
+    .form-label{font-size:.78rem;font-weight:600;color:var(--c-dark);letter-spacing:.04em;display:flex;align-items:center;gap:5px}
+    .req{color:var(--c-error);font-size:.9em}
+    .form-control{width:100%;padding:13px 16px;background:var(--c-off-white);border:1.5px solid var(--c-border);border-radius:var(--r-md);font-size:.9rem;color:var(--c-text);outline:none;transition:border-color var(--tr),background var(--tr),box-shadow var(--tr);appearance:none}
+    .form-control:focus{border-color:var(--c-primary);background:#fff;box-shadow:0 0 0 3px rgba(69,179,157,.14)}
+    .form-control.has-error{border-color:var(--c-error)}
+    .form-control.has-error:focus{box-shadow:0 0 0 3px rgba(231,76,60,.12)}
+    .form-control.valid{border-color:var(--c-success)}
+    .form-control::placeholder{color:rgba(103,122,120,.55)}
+    textarea.form-control{resize:vertical;min-height:100px}
+    .sel-wrap{position:relative}
+    .sel-wrap::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-top-color:var(--c-muted);pointer-events:none}
+    .sel-wrap select{padding-right:36px;cursor:pointer}
+    .field-err{font-size:.72rem;color:var(--c-error);font-weight:500;display:none;align-items:center;gap:4px}
+    .field-err.show{display:flex}
+
+    /* Doctor Picker */
+    .doc-picker{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+    .doc-opt{border:2px solid var(--c-border);border-radius:var(--r-md);padding:14px;cursor:pointer;transition:all var(--tr);display:flex;align-items:center;gap:12px;position:relative}
+    .doc-opt:hover{border-color:var(--c-primary-light);background:var(--c-primary-pale)}
+    .doc-opt.selected{border-color:var(--c-primary);background:var(--c-primary-pale)}
+    .doc-opt.selected::after{content:'✓';position:absolute;top:8px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--c-primary);color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+    .doc-opt__img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--c-border)}
+    .doc-opt__info{display:flex;flex-direction:column;gap:1px}
+    .doc-opt__name{font-size:.8rem;font-weight:700;color:var(--c-dark);line-height:1.2}
+    .doc-opt__spec{font-size:.7rem;color:var(--c-primary);font-weight:500}
+    .doc-opt__avail{font-size:.66rem;color:var(--c-muted)}
+
+    /* Time Slots */
+    .slot-legend{display:flex;gap:16px;font-size:.72rem;color:var(--c-muted);margin-bottom:14px;align-items:center;flex-wrap:wrap}
+    .sl-dot{width:10px;height:10px;border-radius:2px}
+    .sl-dot--avail{background:var(--c-primary-pale);border:1.5px solid var(--c-primary)}
+    .sl-dot--sel{background:var(--c-primary)}
+    .sl-dot--booked{background:var(--c-light-bg);border:1.5px solid var(--c-border)}
+    .time-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .ts{padding:10px 8px;border-radius:var(--r-md);border:1.5px solid var(--c-primary);background:var(--c-primary-pale);font-size:.78rem;font-weight:600;color:var(--c-primary-dark);cursor:pointer;text-align:center;transition:all var(--tr)}
+    .ts:hover{background:var(--c-primary);color:#fff;transform:translateY(-2px);box-shadow:var(--sh-teal)}
+    .ts.selected{background:var(--c-primary);color:#fff;border-color:var(--c-primary-dark)}
+    .ts.booked{background:var(--c-light-bg);border-color:var(--c-border);color:var(--c-muted);cursor:not-allowed;opacity:.6}
+    .ts.booked:hover{transform:none;box-shadow:none;background:var(--c-light-bg);color:var(--c-muted)}
+
+    /* Radio / Checkbox pills */
+    .radio-grp,.check-grp{display:flex;flex-wrap:wrap;gap:10px}
+    .r-pill,.c-pill{position:relative;cursor:pointer}
+    .r-pill input,.c-pill input{position:absolute;opacity:0;width:0;height:0}
+    .r-pill__lbl,.c-pill__lbl{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:50px;border:1.5px solid var(--c-border);font-size:.82rem;font-weight:500;color:var(--c-muted);background:var(--c-off-white);cursor:pointer;transition:all var(--tr);user-select:none}
+    .r-pill input:checked + .r-pill__lbl,.c-pill input:checked + .c-pill__lbl{background:var(--c-primary);border-color:var(--c-primary);color:#fff;box-shadow:0 3px 12px rgba(69,179,157,.28)}
+    .r-pill__lbl:hover,.c-pill__lbl:hover{border-color:var(--c-primary);color:var(--c-primary);background:var(--c-primary-pale)}
+
+    /* Form nav buttons */
+    .form-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 36px 36px;border-top:1px solid var(--c-border);gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border-radius:50px;font-size:.88rem;font-weight:700;letter-spacing:.04em;border:2px solid transparent;cursor:pointer;transition:all var(--tr)}
+    .btn:hover{transform:translateY(-2px)}
+    .btn--primary{background:var(--c-primary);color:#fff;border-color:var(--c-primary)}
+    .btn--primary:hover{background:var(--c-primary-dark);border-color:var(--c-primary-dark);box-shadow:var(--sh-teal)}
+    .btn--outline{background:transparent;color:var(--c-muted);border-color:var(--c-border)}
+    .btn--outline:hover{border-color:var(--c-primary);color:var(--c-primary);background:var(--c-primary-pale)}
+    .btn--lg{padding:16px 40px;font-size:.95rem}
+    .btn svg{width:18px;height:18px}
+
+    /* Review table */
+    .rv-table{width:100%;border-collapse:collapse;font-size:.88rem}
+    .rv-table td{padding:13px 20px}
+    .rv-table tr{border-bottom:1px solid var(--c-border)}
+    .rv-table tr:last-child{border-bottom:none}
+    .rv-table td:first-child{color:var(--c-muted);font-weight:600;width:38%}
+    .rv-table td:last-child{color:var(--c-dark);font-weight:700}
+
+    /* Success screen */
+    .success-screen{display:none;padding:60px 36px;text-align:center;animation:stepIn .5s cubic-bezier(.16,1,.3,1) both}
+    .success-screen.show{display:block}
+    .success-icon{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--c-primary),var(--c-primary-light));display:flex;align-items:center;justify-content:center;margin:0 auto 28px;box-shadow:0 16px 40px rgba(69,179,157,.35);animation:popIn .6s cubic-bezier(.16,1,.3,1) .2s both}
+    @keyframes popIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+    .success-icon svg{width:44px;height:44px;color:#fff;stroke-width:2.5}
+    .success-title{font-family:var(--font-heading);font-size:2rem;font-weight:900;color:var(--c-dark);margin-bottom:12px}
+    .success-sub{color:var(--c-muted);font-size:.95rem;max-width:420px;margin:0 auto 8px;line-height:1.7}
+    .success-ref{display:inline-block;background:var(--c-primary-pale);border:1px solid var(--c-primary);color:var(--c-primary-dark);border-radius:var(--r-md);padding:10px 24px;font-weight:700;font-size:.9rem;letter-spacing:.1em;margin:20px 0 28px}
+    .success-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+    /* SIDEBAR */
+    .sidebar{display:flex;flex-direction:column;gap:22px}
+    .side-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh-sm);overflow:hidden}
+    .sc-head{background:var(--c-primary);padding:18px 22px;display:flex;align-items:center;gap:10px}
+    .sc-head svg{width:18px;height:18px;color:rgba(255,255,255,.8)}
+    .sc-head h3{font-size:.85rem;font-weight:700;color:#fff;letter-spacing:.05em;text-transform:uppercase}
+    .sc-body{padding:20px 22px}
+    .qc-list{display:flex;flex-direction:column;gap:14px}
+    .qc-item{display:flex;align-items:flex-start;gap:12px}
+    .qc-icon{width:38px;height:38px;border-radius:var(--r-md);background:var(--c-primary-pale);border:1px solid var(--c-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--tr)}
+    .qc-icon svg{width:16px;height:16px;color:var(--c-primary)}
+    .qc-item:hover .qc-icon{background:var(--c-primary)}
+    .qc-item:hover .qc-icon svg{color:#fff}
+    .qc-info strong{display:block;font-size:.72rem;font-weight:700;color:var(--c-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+    .qc-info a,.qc-info p{font-size:.87rem;color:var(--c-dark);font-weight:500;line-height:1.5}
+    .qc-info a:hover{color:var(--c-primary)}
+    .opd-table{width:100%;font-size:.83rem}
+    .opd-table tr{border-bottom:1px solid var(--c-border)}
+    .opd-table tr:last-child{border-bottom:none}
+    .opd-table td{padding:9px 4px;color:var(--c-muted)}
+    .opd-table td:last-child{text-align:right;color:var(--c-primary-dark);font-weight:600}
+    .opd-badge{display:inline-block;background:var(--c-primary);color:#fff;border-radius:20px;padding:2px 10px;font-size:.68rem;font-weight:700;letter-spacing:.08em}
+    .sum-card{background:var(--c-primary-pale);border:1px solid var(--c-primary);border-radius:var(--r-lg);padding:20px 22px}
+    .sum-card h4{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c-primary);margin-bottom:14px}
+    .sum-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px dashed rgba(69,179,157,.3);font-size:.84rem}
+    .sum-row:last-child{border-bottom:none}
+    .sum-row span:first-child{color:var(--c-muted);font-weight:500;flex-shrink:0}
+    .sum-row span:last-child{color:var(--c-dark);font-weight:600;text-align:right}
+    .why-list{display:flex;flex-direction:column;gap:12px}
+    .why-item{display:flex;align-items:flex-start;gap:10px}
+    .why-tick{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:2px;background:var(--c-primary);display:flex;align-items:center;justify-content:center}
+    .why-tick svg{width:11px;height:11px;color:#fff;stroke-width:3}
+    .why-item p{font-size:.84rem;color:var(--c-muted);line-height:1.5}
+    .why-item strong{color:var(--c-dark)}
+    .mini-test{background:var(--c-dark);border-radius:var(--r-lg);padding:24px}
+    .mini-test__stars{color:var(--c-gold);font-size:.85rem;letter-spacing:2px;margin-bottom:12px}
+    .mini-test__text{font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.7;font-style:italic;margin-bottom:16px}
+    .mini-test__author{display:flex;align-items:center;gap:10px}
+    .mini-test__avatar{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(69,179,157,.4)}
+    .mini-test__name{font-size:.82rem;font-weight:700;color:#fff;display:block}
+    .mini-test__role{font-size:.72rem;color:var(--c-primary-light)}
+
+    /* FEATURES STRIP */
+    .features-strip{background:#fff;padding:56px 0;border-top:1px solid var(--c-border)}
+    .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+    .feat-tile{text-align:center;padding:24px 16px}
+    .feat-tile__icon{width:64px;height:64px;border-radius:var(--r-lg);background:var(--c-primary-pale);border:1px solid var(--c-border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:all var(--tr)}
+    .feat-tile__icon svg{width:28px;height:28px;color:var(--c-primary)}
+    .feat-tile:hover .feat-tile__icon{background:var(--c-primary);transform:translateY(-4px);box-shadow:var(--sh-teal)}
+    .feat-tile:hover .feat-tile__icon svg{color:#fff}
+    .feat-tile h3{font-size:.9rem;font-weight:700;color:var(--c-dark);margin-bottom:6px}
+    .feat-tile p{font-size:.8rem;color:var(--c-muted);line-height:1.6}
+
+    /* FOOTER */
+    .footer{background:var(--c-footer);padding-top:64px}
+    .footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;padding-bottom:56px}
+    .footer__tagline{font-size:.85rem;color:rgba(255,255,255,.40);line-height:1.8;max-width:300px;margin-top:16px}
+    .footer__heading{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-primary);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .footer__links{display:flex;flex-direction:column;gap:10px}
+    .footer__link{font-size:.87rem;color:rgba(255,255,255,.45);transition:all var(--tr)}
+    .footer__link:hover{color:var(--c-primary-light);padding-left:4px}
+    .footer__clist{display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+    .footer__clist li{display:flex;align-items:center;gap:8px}
+    .footer__clist svg{width:15px;height:15px;color:var(--c-primary);flex-shrink:0}
+    .footer__clist a{font-size:.87rem;color:rgba(255,255,255,.55)}
+    .footer__clist a:hover{color:var(--c-primary-light)}
+    .footer__socials{display:flex;gap:8px}
+    .footer__bottom{border-top:1px solid rgba(255,255,255,.06);padding:20px 0}
+    .footer__bottom-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .footer__bottom p{font-size:.77rem;color:rgba(255,255,255,.28)}
+    .logo--footer .logo__name{color:#fff}
+    .logo--footer .logo__sub{color:rgba(255,255,255,.4)}
+    .logo--footer .logo__accent{background:var(--c-primary)}
+
+    .scroll-top{position:fixed;bottom:28px;right:28px;z-index:800;width:44px;height:44px;background:var(--c-primary);color:#fff;border:none;border-radius:var(--r-sm);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-teal);opacity:0;transform:translateY(12px);transition:all var(--tr)}
+    .scroll-top.show{opacity:1;transform:translateY(0)}
+    .scroll-top:hover{background:var(--c-primary-dark);transform:translateY(-3px)}
+    .scroll-top svg{width:20px;height:20px}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .appt-layout{grid-template-columns:1fr}
+      .sidebar{display:grid;grid-template-columns:1fr 1fr}
+      .feat-grid{grid-template-columns:repeat(2,1fr)}
+      .footer__grid{grid-template-columns:1fr 1fr}
+      .nav{display:none;position:fixed;inset:0;background:rgba(21,38,34,.97);backdrop-filter:blur(10px);z-index:850;flex-direction:column;align-items:center;justify-content:center}
+      .nav__list{flex-direction:column;gap:8px;text-align:center}
+      .nav__link{font-size:1.2rem;color:rgba(255,255,255,.75);padding:10px 24px}
+      .nav__link:hover,.nav__link.active{color:var(--c-primary)}
+      .hamburger{display:flex}
+    }
+    @media(max-width:768px){
+      .steps-bar__inner{overflow-x:auto}
+      .step-tab{min-width:100px;font-size:.72rem;gap:6px}
+      .form-grid{grid-template-columns:1fr}
+      .form-group.span-2{grid-column:auto}
+      .doc-picker{grid-template-columns:1fr}
+      .time-slots{grid-template-columns:repeat(3,1fr)}
+      .sidebar{display:flex;flex-direction:column}
+      .feat-grid{grid-template-columns:1fr 1fr}
+      .footer__grid{grid-template-columns:1fr;gap:36px}
+      .footer__bottom-inner{flex-direction:column;text-align:center}
+    }
+    @media(max-width:480px){
+      .page-hero{padding:60px 0 80px}
+      .fc-head,.form-step,.form-nav{padding-left:20px;padding-right:20px}
+      .time-slots{grid-template-columns:repeat(2,1fr)}
+      .feat-grid{grid-template-columns:1fr}
+      .success-actions{flex-direction:column;align-items:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container top-bar__inner">
+    <div class="top-bar__left">
+      <a href="mailto:newhchnagpur@gmail.com" class="top-bar__item">
+        <svg class="top-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>newhchnagpur@gmail.com
+      </a>
+      <span class="top-bar__item top-bar__item--div">
+        <svg class="top-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Open 24 Hours
+      </span>
+    </div>
+    <div class="top-bar__right">
+      <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="#" class="social-btn" aria-label="Google+"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12h7.5c.3 1-.1 4-2.3 5.7C15.7 19 14 20 12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8c2.1 0 4 .8 5.4 2.1L15.1 8.3C14.2 7.5 13.2 7 12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5c2.4 0 4-1.4 4.5-3H12v-2z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="main-header">
+  <div class="container header__inner">
+    <a href="nhch_index.html" class="logo" aria-label="Back to homepage">
+      <div class="logo__accent" aria-hidden="true"></div>
+      <div class="logo__box">
+        <svg class="logo__emblem" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="#fff" stroke="#45b39d" stroke-width="2"/>
+          <rect x="21" y="10" width="6" height="28" rx="3" fill="#45b39d"/>
+          <rect x="10" y="21" width="28" height="6" rx="3" fill="#45b39d"/>
+          <circle cx="24" cy="24" r="5" fill="#fff"/><circle cx="24" cy="24" r="3" fill="#45b39d"/>
+        </svg>
+        <div class="logo__text">
+          <span class="logo__name">New Health City</span>
+          <span class="logo__sub">Hospital &amp; Research Center</span>
+        </div>
+      </div>
+    </a>
+    <nav class="nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav__list">
+       
+        <li><a href="appointment.html" class="nav__link active nav__link--cta">BOOK NOW</a></li>
+
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-label="Toggle menu">
+      <span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span>
+    </button>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="Book appointment">
+  <div class="ph-circle ph-circle-1" aria-hidden="true"></div>
+  <div class="ph-circle ph-circle-2" aria-hidden="true"></div>
+  <div class="container ph-inner">
+    <div class="ph-tag">Online Booking System</div>
+    <h1 class="ph-title">Book Your <span>Appointment</span><br>In 3 Easy Steps</h1>
+    <p class="ph-sub">Choose your doctor, pick a convenient slot, and confirm your visit. We'll take care of the rest.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb__sep" aria-hidden="true">›</span>
+      <span>Book Appointment</span>
+    </nav>
+  </div>
+</section>
+
+<!-- STEPS BAR -->
+<div class="steps-bar" role="navigation" aria-label="Appointment steps">
+  <div class="steps-bar__inner">
+    <div class="step-tab active" id="tab-1" aria-current="step"><div class="step-num">1</div><span>Doctor &amp; Slot</span></div>
+    <div class="step-tab" id="tab-2"><div class="step-num">2</div><span>Patient Info</span></div>
+    <div class="step-tab" id="tab-3"><div class="step-num">3</div><span>Review &amp; Confirm</span></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="appt-wrapper">
+  <div class="container appt-layout">
+
+    <!-- FORM CARD -->
+    <div class="form-card" id="form-card">
+      <div class="fc-head" id="fc-head">
+        <span class="fc-head-tag" id="fc-tag">Step 1 of 3</span>
+        <h2 id="fc-title">Select Doctor &amp; Appointment Slot</h2>
+        <p id="fc-sub">Choose your preferred specialist and a time that works for you.</p>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="form-step active" id="step-1">
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/><path d="M12 8v8M8 12h8"/></svg>
+          Choose Department
+        </div>
+        <div class="form-group" style="margin-bottom:24px">
+          <label class="form-label" for="dept">Department <span class="req">*</span></label>
+          <div class="sel-wrap">
+            <select class="form-control" id="dept" required>
+              <option value="">— Select a Department —</option>
+              <option value="neonatology">Neonatology &amp; NICU</option>
+              <option value="pediatrics">General Pediatrics</option>
+              <option value="picu">Pediatric ICU (PICU)</option>
+              <option value="cardiology">Pediatric Cardiology</option>
+              <option value="neurology">Pediatric Neurology</option>
+              <option value="pulmonology">Pediatric Pulmonology</option>
+              <option value="orthopedics">Orthopedics</option>
+              <option value="emergency">Emergency &amp; Trauma</option>
+              <option value="diagnostic">Diagnostic &amp; Imaging</option>
+            </select>
+          </div>
+          <span class="field-err" id="dept-err" role="alert">Please select a department.</span>
+        </div>
+
+        <div class="sec-title" style="margin-top:10px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          Select Doctor
+        </div>
+        <div class="doc-picker" role="radiogroup" aria-label="Select a doctor" id="doc-picker">
+          <div class="doc-opt selected" data-doctor="Dr. Sandeep Yadav" data-spec="Pediatrician" tabindex="0" role="radio" aria-checked="true">
+            <img class="doc-opt__img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&q=80&auto=format&fit=crop&crop=face" alt="Dr. Sandeep Yadav">
+            <div class="doc-opt__info"><span class="doc-opt__name">Dr. Sandeep Yadav</span><span class="doc-opt__spec">Pediatrician</span><span class="doc-opt__avail">Available Today</span></div>
+          </div>
+          <div class="doc-opt" data-doctor="Dr. Pallavi Bapat Pinge" data-spec="Paediatrician" tabindex="0" role="radio" aria-checked="false">
+            <img class="doc-opt__img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=80&q=80&auto=format&fit=crop&crop=face" alt="Dr. Pallavi Bapat Pinge">
+            <div class="doc-opt__info"><span class="doc-opt__name">Dr. Pallavi Bapat Pinge</span><span class="doc-opt__spec">Paediatrician</span><span class="doc-opt__avail">Next Available: Tomorrow</span></div>
+          </div>
+          <div class="doc-opt" data-doctor="Dr. Nitin Bhoyar" data-spec="Pediatric Intensivist" tabindex="0" role="radio" aria-checked="false">
+            <img class="doc-opt__img" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=80&q=80&auto=format&fit=crop&crop=face" alt="Dr. Nitin Bhoyar">
+            <div class="doc-opt__info"><span class="doc-opt__name">Dr. Nitin Bhoyar</span><span class="doc-opt__spec">Pediatric Intensivist</span><span class="doc-opt__avail">Available Today</span></div>
+          </div>
+          <div class="doc-opt" data-doctor="Dr. Anjali Mehta" data-spec="Neonatologist" tabindex="0" role="radio" aria-checked="false">
+            <img class="doc-opt__img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&q=80&auto=format&fit=crop&crop=face" alt="Dr. Anjali Mehta">
+            <div class="doc-opt__info"><span class="doc-opt__name">Dr. Anjali Mehta</span><span class="doc-opt__spec">Neonatologist</span><span class="doc-opt__avail">Available Today</span></div>
+          </div>
+        </div>
+
+        <div class="sec-title" style="margin-top:28px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Choose Date
+        </div>
+        <div class="form-group" style="margin-bottom:24px">
+          <label class="form-label" for="appt-date">Preferred Date <span class="req">*</span></label>
+          <input type="date" class="form-control" id="appt-date" required />
+          <span class="field-err" id="date-err" role="alert">Please select a date.</span>
+        </div>
+
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Available Time Slots
+        </div>
+        <div class="slot-legend" aria-hidden="true">
+          <div style="display:flex;align-items:center;gap:6px"><div class="sl-dot sl-dot--avail"></div>Available</div>
+          <div style="display:flex;align-items:center;gap:6px"><div class="sl-dot sl-dot--sel"></div>Selected</div>
+          <div style="display:flex;align-items:center;gap:6px"><div class="sl-dot sl-dot--booked"></div>Booked</div>
+        </div>
+        <div class="time-slots" role="group" aria-label="Select a time slot" id="time-slots">
+          <button type="button" class="ts" data-time="09:00 AM">09:00 AM</button>
+          <button type="button" class="ts" data-time="09:30 AM">09:30 AM</button>
+          <button type="button" class="ts booked" data-time="10:00 AM" disabled>10:00 AM</button>
+          <button type="button" class="ts" data-time="10:30 AM">10:30 AM</button>
+          <button type="button" class="ts booked" data-time="11:00 AM" disabled>11:00 AM</button>
+          <button type="button" class="ts" data-time="11:30 AM">11:30 AM</button>
+          <button type="button" class="ts" data-time="12:00 PM">12:00 PM</button>
+          <button type="button" class="ts booked" data-time="02:00 PM" disabled>02:00 PM</button>
+          <button type="button" class="ts" data-time="02:30 PM">02:30 PM</button>
+          <button type="button" class="ts" data-time="03:00 PM">03:00 PM</button>
+          <button type="button" class="ts" data-time="03:30 PM">03:30 PM</button>
+          <button type="button" class="ts" data-time="04:00 PM">04:00 PM</button>
+        </div>
+        <span class="field-err" id="slot-err" role="alert" style="margin-top:8px">Please select a time slot.</span>
+
+        <div class="sec-title" style="margin-top:28px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          Visit Type
+        </div>
+        <div class="radio-grp" role="radiogroup" aria-label="Visit type">
+          <label class="r-pill"><input type="radio" name="visit-type" value="in-person" checked><span class="r-pill__lbl">🏥 In-Person Visit</span></label>
+          <label class="r-pill"><input type="radio" name="visit-type" value="video"><span class="r-pill__lbl">💻 Video Consultation</span></label>
+          <label class="r-pill"><input type="radio" name="visit-type" value="followup"><span class="r-pill__lbl">🔄 Follow-Up Visit</span></label>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="form-step" id="step-2">
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Patient Details
+        </div>
+        <div class="form-grid" style="margin-bottom:22px">
+          <div class="form-group"><label class="form-label" for="fname">First Name <span class="req">*</span></label><input type="text" class="form-control" id="fname" placeholder="e.g. Rahul" required autocomplete="given-name"><span class="field-err" id="fname-err" role="alert">First name is required.</span></div>
+          <div class="form-group"><label class="form-label" for="lname">Last Name <span class="req">*</span></label><input type="text" class="form-control" id="lname" placeholder="e.g. Sharma" required autocomplete="family-name"><span class="field-err" id="lname-err" role="alert">Last name is required.</span></div>
+          <div class="form-group"><label class="form-label" for="phone">Phone <span class="req">*</span></label><input type="tel" class="form-control" id="phone" placeholder="+91 98765 43210" required autocomplete="tel"><span class="field-err" id="phone-err" role="alert">Enter a valid phone number.</span></div>
+          <div class="form-group"><label class="form-label" for="email">Email Address</label><input type="email" class="form-control" id="email" placeholder="you@example.com" autocomplete="email"></div>
+          <div class="form-group"><label class="form-label" for="dob">Date of Birth <span class="req">*</span></label><input type="date" class="form-control" id="dob" required><span class="field-err" id="dob-err" role="alert">Date of birth is required.</span></div>
+          <div class="form-group"><label class="form-label" for="gender">Gender <span class="req">*</span></label><div class="sel-wrap"><select class="form-control" id="gender" required><option value="">— Select —</option><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option><option value="pnts">Prefer not to say</option></select></div><span class="field-err" id="gender-err" role="alert">Please select gender.</span></div>
+        </div>
+
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Medical Information
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:22px">
+          <div class="form-group"><label class="form-label" for="complaint">Chief Complaint / Symptoms <span class="req">*</span></label><textarea class="form-control" id="complaint" placeholder="Briefly describe the main reason for your visit, current symptoms, or areas of concern..." required></textarea><span class="field-err" id="complaint-err" role="alert">Please describe your symptoms.</span></div>
+          <div class="form-group"><label class="form-label" for="history">Known Medical History</label><input type="text" class="form-control" id="history" placeholder="e.g. Diabetes, Asthma, previous surgeries (optional)"></div>
+          <div class="form-group"><label class="form-label" for="allergies">Known Allergies</label><input type="text" class="form-control" id="allergies" placeholder="e.g. Penicillin, Latex, Peanuts (optional)"></div>
+        </div>
+
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          Urgency Level
+        </div>
+        <div class="radio-grp" role="radiogroup" aria-label="Urgency level" style="margin-bottom:28px">
+          <label class="r-pill"><input type="radio" name="urgency" value="routine" checked><span class="r-pill__lbl">🟢 Routine</span></label>
+          <label class="r-pill"><input type="radio" name="urgency" value="soon"><span class="r-pill__lbl">🟡 Needs Attention Soon</span></label>
+          <label class="r-pill"><input type="radio" name="urgency" value="urgent"><span class="r-pill__lbl">🔴 Urgent</span></label>
+        </div>
+
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Special Requirements
+        </div>
+        <div class="check-grp" role="group" aria-label="Special requirements">
+          <label class="c-pill"><input type="checkbox" name="special" value="wheelchair"><span class="c-pill__lbl">♿ Wheelchair Access</span></label>
+          <label class="c-pill"><input type="checkbox" name="special" value="interpreter"><span class="c-pill__lbl">🌐 Interpreter</span></label>
+          <label class="c-pill"><input type="checkbox" name="special" value="child"><span class="c-pill__lbl">👶 Infant / Toddler</span></label>
+          <label class="c-pill"><input type="checkbox" name="special" value="reports"><span class="c-pill__lbl">📄 Bringing Reports</span></label>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="form-step" id="step-3">
+        <div class="sec-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          Review Your Appointment
+        </div>
+        <p style="font-size:.88rem;color:var(--c-muted);margin-bottom:24px;line-height:1.6">Please review all details before confirming. You'll receive a confirmation on your phone and email.</p>
+
+        <div style="background:var(--c-off-white);border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--c-border);margin-bottom:28px">
+          <table class="rv-table">
+            <tbody>
+              <tr><td>👨‍⚕️ Doctor</td><td id="rv-doctor">—</td></tr>
+              <tr><td>🏥 Department</td><td id="rv-dept">—</td></tr>
+              <tr><td>📅 Date</td><td id="rv-date">—</td></tr>
+              <tr><td>🕐 Time</td><td id="rv-time">—</td></tr>
+              <tr><td>🔄 Visit Type</td><td id="rv-visit">—</td></tr>
+              <tr><td>👤 Patient Name</td><td id="rv-name">—</td></tr>
+              <tr><td>📞 Phone</td><td id="rv-phone">—</td></tr>
+              <tr><td>🚦 Urgency</td><td id="rv-urgency">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background:var(--c-primary-pale);border:1px solid var(--c-primary);border-radius:var(--r-md);padding:18px 20px;margin-bottom:22px">
+          <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer">
+            <input type="checkbox" id="consent" required style="margin-top:3px;width:auto;accent-color:var(--c-primary)">
+            <span style="font-size:.84rem;color:var(--c-text);line-height:1.6">
+              I confirm that the information provided is accurate. I agree to the <a href="#" style="color:var(--c-primary);text-decoration:underline">Terms &amp; Conditions</a> and <a href="#" style="color:var(--c-primary);text-decoration:underline">Privacy Policy</a> of New Health City Hospital &amp; Research Center.
+            </span>
+          </label>
+          <span class="field-err" id="consent-err" role="alert" style="margin-top:8px">You must agree to the terms to proceed.</span>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-screen" id="success-screen" aria-live="polite">
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+        <h2 class="success-title">Appointment Confirmed! 🎉</h2>
+        <p class="success-sub">Your appointment request has been successfully submitted. Our team will contact you within 2 hours to confirm.</p>
+        <div class="success-ref" id="booking-ref">Booking Ref: #NHCH-0000</div>
+        <p class="success-sub" style="font-size:.82rem">Please arrive 15 minutes early with a valid ID and any previous medical records.</p>
+        <div class="success-actions">
+          <a href="index.html" class="btn btn--primary">← Back to Home</a>
+          <button class="btn btn--outline" onclick="window.print()">🖨 Print Receipt</button>
+        </div>
+      </div>
+
+      <!-- NAV BUTTONS -->
+      <div class="form-nav" id="form-nav">
+        <button type="button" class="btn btn--outline" id="btn-back" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back
+        </button>
+        <div></div>
+        <button type="button" class="btn btn--primary btn--lg" id="btn-next">
+          Next Step<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Contact info sidebar">
+      <!-- Need Help -->
+      <div class="side-card">
+        <div class="sc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><h3>Need Help?</h3></div>
+        <div class="sc-body">
+          <div class="qc-list">
+            <div class="qc-item">
+              <div class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <div class="qc-info"><strong>Emergency &amp; Helpline</strong><a href="tel:07770002397">077700 02397</a></div>
+            </div>
+            <div class="qc-item">
+              <div class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
+              <div class="qc-info"><strong>Email</strong><a href="mailto:newhchnagpur@gmail.com">newhchnagpur@gmail.com</a></div>
+            </div>
+            <div class="qc-item">
+              <div class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="qc-info"><strong>Address</strong><p>Panchvati Tower, Wardha Road,<br>Dhantoli, Nagpur, Maharashtra</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPD Timings -->
+      <div class="side-card">
+        <div class="sc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><h3>OPD Timings</h3></div>
+        <div class="sc-body">
+          <table class="opd-table">
+            <tr><td>Monday – Friday</td><td>9:00 AM – 7:00 PM</td></tr>
+            <tr><td>Saturday</td><td>9:00 AM – 4:00 PM</td></tr>
+            <tr><td>Sunday</td><td>10:00 AM – 2:00 PM</td></tr>
+            <tr><td>Emergency</td><td><span class="opd-badge">24 / 7</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Appointment Summary (shown step 3) -->
+      <div class="sum-card" id="sidebar-summary" style="display:none">
+        <h4>📋 Your Appointment</h4>
+        <div class="sum-row"><span>Doctor</span><span id="sum-doctor">—</span></div>
+        <div class="sum-row"><span>Date</span><span id="sum-date">—</span></div>
+        <div class="sum-row"><span>Time</span><span id="sum-time">—</span></div>
+        <div class="sum-row"><span>Patient</span><span id="sum-name">—</span></div>
+      </div>
+
+      <!-- Why NHCH -->
+      <div class="side-card">
+        <div class="sc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3>Why Choose NHCH?</h3></div>
+        <div class="sc-body">
+          <div class="why-list">
+            <div class="why-item"><div class="why-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><p><strong>119+ Expert Specialists</strong> across all pediatric disciplines.</p></div>
+            <div class="why-item"><div class="why-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><p><strong>Level III NICU</strong> — best in central India.</p></div>
+            <div class="why-item"><div class="why-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><p><strong>NABH Accredited</strong> national quality standards.</p></div>
+            <div class="why-item"><div class="why-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><p><strong>24/7 Emergency</strong> rapid response team always on call.</p></div>
+            <div class="why-item"><div class="why-tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><p><strong>Same-day Confirmation</strong> — our team calls within 2 hours.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini testimonial -->
+      <div class="mini-test">
+        <div class="mini-test__stars">★★★★★</div>
+        <p class="mini-test__text">"Booking was so easy! The team called within an hour and the doctor was excellent. NHCH is truly world-class."</p>
+        <div class="mini-test__author">
+          <img class="mini-test__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&auto=format&fit=crop" alt="Priya Sharma" loading="lazy">
+          <div><span class="mini-test__name">Priya Sharma</span><span class="mini-test__role">NICU Parent, Nagpur</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- FEATURES STRIP -->
+<section class="features-strip" aria-label="Why book online">
+  <div class="container">
+    <div class="feat-grid">
+      <div class="feat-tile"><div class="feat-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h3>Instant Confirmation</h3><p>Receive a booking reference immediately. Our team confirms within 2 hours.</p></div>
+      <div class="feat-tile"><div class="feat-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Secure &amp; Private</h3><p>Your medical data is protected and never shared without consent.</p></div>
+      <div class="feat-tile"><div class="feat-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3>Expert Specialists</h3><p>Choose from 119+ experienced doctors across all departments.</p></div>
+      <div class="feat-tile"><div class="feat-tile__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><h3>Flexible Scheduling</h3><p>Morning, afternoon, and evening slots available 6 days a week.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container footer__grid">
+    <div>
+      <a href="index.html" class="logo logo--footer">
+        <div class="logo__accent" aria-hidden="true"></div>
+        <div class="logo__box">
+          <svg class="logo__emblem" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="rgba(255,255,255,.05)" stroke="#45b39d" stroke-width="2"/><rect x="21" y="10" width="6" height="28" rx="3" fill="#45b39d"/><rect x="10" y="21" width="28" height="6" rx="3" fill="#45b39d"/><circle cx="24" cy="24" r="3" fill="#45b39d"/></svg>
+          <div class="logo__text"><span class="logo__name">New Health City</span><span class="logo__sub">Hospital &amp; Research Center</span></div>
+        </div>
+      </a>
+      <p class="footer__tagline">A step towards next-gen healthcare. We provide the best childcare in central India with world-class infrastructure and compassionate expertise.</p>
+    </div>
+    <div>
+      <h3 class="footer__heading">QUICK LINKS</h3>
+      <ul class="footer__links">
+        <li><a href="index.html" class="footer__link">› Home</a></li>
+        <li><a href="  " class="footer__link">› About Us</a></li>
+        <li><a href="  " class="footer__link">› Our Team</a></li>
+        <li><a href="  " class="footer__link">› Specialities</a></li>
+        <li><a href="appointment2.html" class="footer__link">› Book Appointment</a></li>
+        <li><a href="  " class="footer__link">› Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="footer__heading">CONTACT</h3>
+      <ul class="footer__clist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:07770002397">077700 02397</a></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg><a href="mailto:newhchnagpur@gmail.com">newhchnagpur@gmail.com</a></li>
+      </ul>
+      <div class="footer__socials">
+        <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="#" class="social-btn" aria-label="Google+"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12h7.5c.3 1-.1 4-2.3 5.7C15.7 19 14 20 12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8c2.1 0 4 .8 5.4 2.1L15.1 8.3C14.2 7.5 13.2 7 12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5c2.4 0 4-1.4 4.5-3H12v-2z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom"><div class="container footer__bottom-inner"><p>&copy; <span id="year"></span> New Health City Hospital &amp; Research Center. All Rights Reserved.</p><p>Designed with ♥ for better healthcare.</p></div></div>
+</footer>
+
+<button class="scroll-top" id="scroll-top-btn" aria-label="Scroll to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg></button>
+
+<script>
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+$('#year').textContent=new Date().getFullYear();
+
+// Date default
+(()=>{const d=$('#appt-date');if(!d)return;const t=new Date();t.setDate(t.getDate()+3);d.min=new Date().toISOString().split('T')[0];d.value=t.toISOString().split('T')[0];})();
+
+// Sticky
+const hdr=$('#main-header');
+window.addEventListener('scroll',()=>hdr.classList.toggle('header--scrolled',scrollY>50),{passive:true});
+
+// Mobile nav
+const hbtn=$('#hamburger-btn'),nav=$('#main-nav');
+hbtn.addEventListener('click',()=>{const o=hbtn.classList.toggle('is-open');hbtn.setAttribute('aria-expanded',o);nav.classList.toggle('is-open',o);document.body.style.overflow=o?'hidden':''});
+$$('.nav__link',nav).forEach(l=>l.addEventListener('click',()=>{hbtn.classList.remove('is-open');nav.classList.remove('is-open');document.body.style.overflow=''}));
+
+// Scroll to top
+const stb=$('#scroll-top-btn');
+window.addEventListener('scroll',()=>stb.classList.toggle('show',scrollY>400),{passive:true});
+stb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Doctor picker
+const docOpts=$$('.doc-opt');
+let selDoc={name:'Dr. Sandeep Yadav',spec:'Pediatrician'};
+docOpts.forEach(o=>{
+  const pick=()=>{docOpts.forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-checked','false')});o.classList.add('selected');o.setAttribute('aria-checked','true');selDoc={name:o.dataset.doctor,spec:o.dataset.spec}};
+  o.addEventListener('click',pick);
+  o.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+});
+
+// Time slots
+const slots=$$('.ts');
+let selTime='';
+slots.forEach(s=>{if(s.classList.contains('booked'))return;s.addEventListener('click',()=>{slots.forEach(x=>x.classList.remove('selected'));s.classList.add('selected');selTime=s.dataset.time;$('#slot-err').classList.remove('show')})});
+
+// Multi-step logic
+let step=1;
+const TOTAL=3;
+const titles={1:{h:'Select Doctor &amp; Appointment Slot',p:'Choose your preferred specialist and a time that works for you.'},2:{h:'Patient Information',p:'Tell us about the patient. All information is kept confidential.'},3:{h:'Review &amp; Confirm',p:'Please verify your details before final submission.'}};
+const visitMap={'in-person':'🏥 In-Person Visit','video':'💻 Video Consultation','followup':'🔄 Follow-Up Visit'};
+const urgMap={routine:'🟢 Routine',soon:'🟡 Needs Attention Soon',urgent:'🔴 Urgent'};
+
+function goTo(n){
+  $$('.form-step').forEach(s=>s.classList.remove('active'));
+  $$('.step-tab').forEach(t=>{t.classList.remove('active','done');t.removeAttribute('aria-current')});
+  // Mark previous tabs done
+  for(let i=1;i<n;i++){const t=$('#tab-'+i);t&&t.classList.add('done')}
+  $(`#step-${n}`)?.classList.add('active');
+  const tab=$('#tab-'+n);tab&&(tab.classList.add('active'),tab.setAttribute('aria-current','step'));
+  step=n;
+  $(`#fc-tag`).textContent=`Step ${n} of ${TOTAL}`;
+  $(`#fc-title`).innerHTML=titles[n].h;
+  $(`#fc-sub`).textContent=titles[n].p;
+  $('#btn-back').style.display=n>1?'inline-flex':'none';
+  $('#btn-next').innerHTML=n===TOTAL?`Confirm Appointment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>`:`Next Step <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+  const ss=$('#sidebar-summary');
+  if(n===3){populateReview();ss.style.display='block'}else{ss.style.display='none'}
+  $('html').scrollTop=0;$('#form-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function se(id){const e=$(id);e&&e.classList.add('show')}
+function ce(id){const e=$(id);e&&e.classList.remove('show')}
+function err(el,eid,v){if(!v){$(el)?.classList.add('has-error');se(eid)}else{$(el)?.classList.remove('has-error');ce(eid);$(el)?.classList.add('valid')}}
+
+function v1(){let ok=true;
+  const d=!$('#dept').value;err('#dept','#dept-err',!d);if(d)ok=false;
+  const dt=!$('#appt-date').value;err('#appt-date','#date-err',!dt);if(dt)ok=false;
+  if(!selTime){se('#slot-err');ok=false}else ce('#slot-err');
+  return ok;
+}
+function v2(){let ok=true;
+  [['#fname','#fname-err',v=>v.trim().length>=2],['#lname','#lname-err',v=>v.trim().length>=2],['#phone','#phone-err',v=>/^[+\d\s\-()`]{7,15}$/.test(v.trim())],['#dob','#dob-err',v=>!!v],['#gender','#gender-err',v=>!!v],['#complaint','#complaint-err',v=>v.trim().length>=10]].forEach(([el,eid,test])=>{const inp=$(el);const good=test(inp.value);err(el,eid,good);if(!good)ok=false});
+  return ok;
+}
+function v3(){const c=$('#consent');if(!c.checked){se('#consent-err');return false}ce('#consent-err');return true}
+
+function populateReview(){
+  const de=$('#dept'),dt=$('#appt-date').value,vt=document.querySelector('input[name="visit-type"]:checked')?.value||'—',ug=document.querySelector('input[name="urgency"]:checked')?.value||'routine';
+  const ds=dt?new Date(dt+'T00:00').toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'—';
+  $('#rv-doctor').textContent=`${selDoc.name} (${selDoc.spec})`;
+  $('#rv-dept').textContent=de.options[de.selectedIndex]?.text||'—';
+  $('#rv-date').textContent=ds;$('#rv-time').textContent=selTime||'—';
+  $('#rv-visit').textContent=visitMap[vt]||vt;
+  $('#rv-name').textContent=`${$('#fname').value} ${$('#lname').value}`.trim()||'—';
+  $('#rv-phone').textContent=$('#phone').value||'—';$('#rv-urgency').textContent=urgMap[ug]||ug;
+  $('#sum-doctor').textContent=selDoc.name;$('#sum-date').textContent=ds;$('#sum-time').textContent=selTime||'—';
+  $('#sum-name').textContent=`${$('#fname').value} ${$('#lname').value}`.trim()||'—';
+}
+
+$('#btn-next').addEventListener('click',()=>{
+  if(step===1&&v1())goTo(2);
+  else if(step===2&&v2())goTo(3);
+  else if(step===3&&v3())submit();
+});
+$('#btn-back').addEventListener('click',()=>{if(step>1)goTo(step-1)});
+
+function submit(){
+  const nb=$('#btn-next');nb.disabled=true;nb.innerHTML='⏳ Submitting...';
+  setTimeout(()=>{
+    const ref='NHCH-'+Math.floor(10000+Math.random()*90000);
+    $$('.form-step').forEach(s=>s.style.display='none');
+    $('#form-nav').style.display='none';
+    $('#fc-head').style.background='linear-gradient(135deg,#27ae60,#2ecc71)';
+    $('#fc-tag').textContent='Booking Confirmed!';$('#fc-title').textContent="You're All Set!";$('#fc-sub').textContent='Your appointment has been successfully booked.';
+    const ss=$('#success-screen');ss.classList.add('show');$('#booking-ref').textContent=`Booking Ref: #${ref}`;
+    $$('.step-tab').forEach(t=>{t.classList.add('done');t.classList.remove('active')});
+    $('#sidebar-summary').style.display='none';
+    ss.scrollIntoView({behavior:'smooth',block:'start'});
+  },1800);
+}
+
+// Real-time validation clearing
+$$('.form-control').forEach(inp=>{inp.addEventListener('input',function(){if(this.value.trim()){this.classList.remove('has-error')}})});
+</script>
+</body>
+</html>

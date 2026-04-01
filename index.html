@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="New Health City Hospital & Research Center – Nagpur's premier pediatric and critical care hospital. Open 24 hours." />
+  <title>New Health City Hospital & Research Center</title>
+
+  
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       TOP BAR
+  ========================================================= -->
+  <div class="top-bar" id="top-bar">
+    <div class="container top-bar__inner">
+
+      <!-- Left: Contact Info -->
+      <div class="top-bar__left">
+        <a href="mailto:newhchnagpur@gmail.com" class="top-bar__item" aria-label="Email us">
+          <!-- Envelope SVG -->
+          <svg class="top-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          newhchnagpur@gmail.com
+        </a>
+        <span class="top-bar__item top-bar__item--divider">
+          <!-- Clock SVG -->
+          <svg class="top-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+             <circle cx="12" cy="12" r="10"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+             <path d="M12 6v6l4 2"/>
+          </svg>
+          Open 24 Hours
+        </span>
+      </div>
+
+      <!-- Right: Social Icons -->
+      <div class="top-bar__right">
+        <a href="#" class="social-btn" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Google Plus">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 12h7.5c.3 1-.1 4-2.3 5.7C15.7 19 14 20 12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8c2.1 0 4 .8 5.4 2.1L15.1 8.3C14.2 7.5 13.2 7 12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5c2.4 0 4-1.4 4.5-3H12v-2z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       STICKY HEADER / NAVBAR
+  ========================================================= -->
+  <header class="header" id="main-header">
+    <div class="container header__inner">
+
+      <!-- Logo with diagonal teal accent -->
+      <a href="#hero" class="logo" aria-label="New Health City Hospital Home">
+        <div class="logo__accent-shape" aria-hidden="true"></div>
+        <div class="logo__box">
+          <!-- Simplified SVG cross / hospital cross emblem -->
+          <svg class="logo__emblem" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" fill="#fff" stroke="#45b39d" stroke-width="2"/>
+            <rect x="21" y="10" width="6" height="28" rx="3" fill="#45b39d"/>
+            <rect x="10" y="21" width="28" height="6" rx="3" fill="#45b39d"/>
+            <circle cx="24" cy="24" r="5" fill="#fff"/>
+            <circle cx="24" cy="24" r="3" fill="#45b39d"/>
+          </svg>
+          <div class="logo__text">
+            <span class="logo__name">New Health City</span>
+            <span class="logo__sub">Hospital &amp; Research Center</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <ul class="nav__list" role="list">
+          <li><a href="#hero"         class="nav__link active">HOME</a></li>
+          <li><a href="#about-banner" class="nav__link">NHCH</a></li>
+          <li><a href="#stats"        class="nav__link">OPD TIME</a></li>
+          <li><a href="#doctors"      class="nav__link">OUR TEAM</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="#services"     class="nav__link">OUR SPECIALTY <span class="nav__arrow">&#8964;</span></a>
+            <ul class="nav__dropdown" role="list">
+              <li><a href="#services" class="nav__dropdown-link">Neonatology</a></li>
+              <li><a href="#services" class="nav__dropdown-link">Pediatric ICU</a></li>
+              <li><a href="#services" class="nav__dropdown-link">Cardiology</a></li>
+              <li><a href="#services" class="nav__dropdown-link">Neurology</a></li>
+            </ul>
+          </li>
+          <li><a href="#testimonials" class="nav__link">BLOG</a></li>
+          <li><a href="#quick-action" class="nav__link">ABOUT</a></li>
+          <li><a href= "registration.html" class="nav__link">REGISTER</a></li>
+          <li><a href="#contact-banner" class="nav__link">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       HERO SLIDER
+  ========================================================= -->
+  <section class="hero" id="hero" aria-label="Hero image slideshow">
+    <div class="hero__slider" id="hero-slider">
+
+      <!-- Slide 1 -->
+      <div class="hero__slide hero__slide--active" aria-hidden="false">
+        <img
+          src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=80&auto=format&fit=crop"
+          alt="Modern hospital NICU ward with incubators and medical equipment"
+          class="hero__img"
+          loading="eager"
+        />
+        <div class="hero__overlay"></div>
+        <div class="hero__caption">
+          <span class="hero__caption-tag">Nagpur's #1 Pediatric Centre</span>
+          <h1 class="hero__title">Advanced Care.<br>Compassionate Healing.</h1>
+          <p class="hero__subtitle">Level III NICU · Pediatric ICU · 24/7 Emergency</p>
+          <div class="hero__cta-group">
+            <a href="#doctors" class="btn btn--primary">Find a Doctor</a>
+            <a href="appointment.html" class="btn btn--outline-white">Book Appointment</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="hero__slide" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=1600&q=80&auto=format&fit=crop"
+          alt="Smiling medical team of doctors and nurses in hospital corridor"
+          class="hero__img"
+          loading="lazy"
+        />
+        <div class="hero__overlay"></div>
+        <div class="hero__caption">
+          <span class="hero__caption-tag">119+ Expert Specialists</span>
+          <h1 class="hero__title">Expert Doctors.<br>Trusted by Thousands.</h1>
+          <p class="hero__subtitle">Pediatrics · Cardiology · Critical Care · Surgery</p>
+          <div class="hero__cta-group">
+            <a href="#doctors" class="btn btn--primary">Meet Our Team</a>
+            <a href="#stats" class="btn btn--outline-white">Our Achievements</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero__slide" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1587351021759-3772687f4d9c?w=1600&q=80&auto=format&fit=crop"
+          alt="Pediatrician doctor examining a baby patient with care"
+          class="hero__img"
+          loading="lazy"
+        />
+        <div class="hero__overlay"></div>
+        <div class="hero__caption">
+          <span class="hero__caption-tag">Best Childcare in Central India</span>
+          <h1 class="hero__title">Next-Gen<br>Healthcare for Children.</h1>
+          <p class="hero__subtitle">Neonatology · Child Development · Vaccinations</p>
+          <div class="hero__cta-group">
+            <a href="#quick-action" class="btn btn--primary">Learn More</a>
+            <a href="#contact-banner" class="btn btn--outline-white">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider Controls -->
+    <button class="hero__arrow hero__arrow--prev" id="slider-prev" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="hero__arrow hero__arrow--next" id="slider-next" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+
+    <!-- Dot Indicators -->
+    <div class="hero__dots" id="hero-dots" role="tablist" aria-label="Slide indicators">
+      <button class="hero__dot hero__dot--active" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+      <button class="hero__dot" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+      <button class="hero__dot" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       QUICK ACTION CARDS (Our Doctors / About Hospital)
+  ========================================================= -->
+  <section class="quick-action" id="quick-action" aria-label="Quick access">
+    <div class="quick-action__grid">
+
+      <!-- Card 1: Our Doctors -->
+      <div class="quick-card quick-card--dark">
+        <div class="quick-card__inner">
+          <!-- Stethoscope SVG Icon -->
+          <svg class="quick-card__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+            <path d="M14 8v8c0 9.941 8.059 18 18 18v0c9.941 0 18-8.059 18-18V8"/>
+            <path d="M32 38v10"/>
+            <circle cx="32" cy="52" r="4"/>
+            <path d="M36 52h8a6 6 0 006-6v-6a6 6 0 00-6-6h-2"/>
+          </svg>
+          <h2 class="quick-card__title">Our Doctors</h2>
+          <p class="quick-card__desc">Connect with our team of 119+ experienced specialists across all medical disciplines.</p>
+          <a href="#doctors" class="quick-card__link" aria-label="Find a doctor">FIND A DOCTOR &rsaquo;</a>
+        </div>
+      </div>
+
+      <!-- Card 2: About Hospital -->
+      <div class="quick-card quick-card--light">
+        <div class="quick-card__inner">
+          <!-- Hospital Building SVG Icon -->
+          <svg class="quick-card__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="8" y="20" width="48" height="38" rx="2"/>
+            <path d="M22 58V44h20v14"/>
+            <path d="M8 28h48"/>
+            <rect x="24" y="8" width="16" height="12" rx="2"/>
+            <path d="M32 12v4M30 14h4"/>
+            <rect x="14" y="34" width="8" height="8"/>
+            <rect x="42" y="34" width="8" height="8"/>
+          </svg>
+          <h2 class="quick-card__title">About Hospital</h2>
+          <p class="quick-card__desc">Discover our world-class infrastructure, Level III NICU, and state-of-the-art research facilities.</p>
+          <a href="#about-banner" class="quick-card__link quick-card__link--btn" aria-label="Get hospital info">GET INFO &rsaquo;</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ABOUT / FEATURE BANNER
+  ========================================================= -->
+  <section class="about-banner" id="about-banner" aria-label="About New Health City Hospital">
+    <div class="container about-banner__grid">
+
+      <!-- Image Column -->
+      <div class="about-banner__visual">
+        <div class="about-banner__img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=800&q=80&auto=format&fit=crop"
+            alt="Nurse checking on a newborn in the NICU"
+            class="about-banner__img"
+            loading="lazy"
+          />
+          <div class="about-banner__badge">
+            <span class="about-banner__badge-num">15+</span>
+            <span class="about-banner__badge-label">Years of Excellence</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Column -->
+      <div class="about-banner__content">
+        <span class="section-tag">WHO WE ARE</span>
+        <h2 class="section-title">A Step Towards <em>Next-Gen</em> Healthcare</h2>
+        <p class="about-banner__lead">
+          New Health City Hospital &amp; Research Center is central India's premier destination for pediatric and critical care. We combine cutting-edge technology with compassionate expertise to deliver outstanding patient outcomes.
+        </p>
+        <p class="about-banner__body">
+          Located in the heart of Nagpur, our facility features a Level III NICU, Pediatric ICU, advanced diagnostic imaging, and a dedicated research wing committed to advancing medical science.
+        </p>
+
+        <!-- Feature Grid -->
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div>
+              <strong>NABH Accredited</strong>
+              <span>National quality standards</span>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <div>
+              <strong>Research Center</strong>
+              <span>Pioneering medical research</span>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <div>
+              <strong>24/7 Emergency</strong>
+              <span>Round the clock care</span>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <strong>Expert Team</strong>
+              <span>119+ specialist doctors</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="appointment.html" class="btn btn--primary" style="margin-top:2rem;">Book an Appointment &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       DOCTORS DIRECTORY
+  ========================================================= -->
+  <section class="doctors" id="doctors" aria-label="Our experienced doctors">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">OUR SPECIALISTS</span>
+        <h2 class="section-title"><span class="text-teal">EXPERIENCE</span> DOCTOR</h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+      </div>
+
+      <!-- Doctor Cards Grid -->
+      <div class="doctors__grid" role="list">
+
+        <!-- Doctor 1 -->
+        <article class="doctor-card" role="listitem">
+          <div class="doctor-card__img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80&auto=format&fit=crop&crop=face"
+              alt="Dr. Sandeep Yadav, Pediatrician"
+              class="doctor-card__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="doctor-card__body">
+            <div class="doctor-card__watermark" aria-hidden="true">
+              <!-- Stethoscope watermark -->
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+                <path d="M14 8v8c0 9.941 8.059 18 18 18s18-8.059 18-18V8"/>
+                <path d="M32 38v10"/><circle cx="32" cy="52" r="4"/>
+              </svg>
+            </div>
+            <h3 class="doctor-card__name">DR. SANDEEP YADAV</h3>
+            <p class="doctor-card__specialty">Pediatrician</p>
+            <p class="doctor-card__quals">MD. DCH. DNB</p>
+          </div>
+          <a href="#contact-banner" class="doctor-card__btn" aria-label="View profile of Dr. Sandeep Yadav">VIEW PROFILE</a>
+        </article>
+
+        <!-- Doctor 2 -->
+        <article class="doctor-card" role="listitem">
+          <div class="doctor-card__img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80&auto=format&fit=crop&crop=face"
+              alt="Dr. Pallavi Bapat Pinge, Paediatrician"
+              class="doctor-card__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="doctor-card__body">
+            <div class="doctor-card__watermark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+                <path d="M14 8v8c0 9.941 8.059 18 18 18s18-8.059 18-18V8"/>
+                <path d="M32 38v10"/><circle cx="32" cy="52" r="4"/>
+              </svg>
+            </div>
+            <h3 class="doctor-card__name">DR. PALLAVI BAPAT PINGE</h3>
+            <p class="doctor-card__specialty">Paediatrician</p>
+            <p class="doctor-card__quals">MBBS (DCH)</p>
+          </div>
+          <a href="#contact-banner" class="doctor-card__btn" aria-label="View profile of Dr. Pallavi Bapat Pinge">VIEW PROFILE</a>
+        </article>
+
+        <!-- Doctor 3 -->
+        <article class="doctor-card" role="listitem">
+          <div class="doctor-card__img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80&auto=format&fit=crop&crop=face"
+              alt="Dr. Nitin Bhoyar, Pediatric Intensivist"
+              class="doctor-card__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="doctor-card__body">
+            <div class="doctor-card__watermark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+                <path d="M14 8v8c0 9.941 8.059 18 18 18s18-8.059 18-18V8"/>
+                <path d="M32 38v10"/><circle cx="32" cy="52" r="4"/>
+              </svg>
+            </div>
+            <h3 class="doctor-card__name">DR. NITIN BHOYAR</h3>
+            <p class="doctor-card__specialty">Pediatric Intensivist</p>
+            <p class="doctor-card__quals">MBBS (DCH) DNB</p>
+          </div>
+          <a href="#contact-banner" class="doctor-card__btn" aria-label="View profile of Dr. Nitin Bhoyar">VIEW PROFILE</a>
+        </article>
+
+        <!-- Doctor 4 (bonus) -->
+        <article class="doctor-card" role="listitem">
+          <div class="doctor-card__img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80&auto=format&fit=crop&crop=face"
+              alt="Dr. Anjali Mehta, Neonatologist"
+              class="doctor-card__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="doctor-card__body">
+            <div class="doctor-card__watermark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+                <path d="M14 8v8c0 9.941 8.059 18 18 18s18-8.059 18-18V8"/>
+                <path d="M32 38v10"/><circle cx="32" cy="52" r="4"/>
+              </svg>
+            </div>
+            <h3 class="doctor-card__name">DR. ANJALI MEHTA</h3>
+            <p class="doctor-card__specialty">Neonatologist</p>
+            <p class="doctor-card__quals">MD. DM (Neonatology)</p>
+          </div>
+          <a href="#contact-banner" class="doctor-card__btn" aria-label="View profile of Dr. Anjali Mehta">VIEW PROFILE</a>
+        </article>
+
+        <!-- Doctor 5 (bonus) -->
+        <article class="doctor-card" role="listitem">
+          <div class="doctor-card__img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80&auto=format&fit=crop&crop=face"
+              alt="Dr. Ramesh Kulkarni, Pediatric Cardiologist"
+              class="doctor-card__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="doctor-card__body">
+            <div class="doctor-card__watermark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+                <path d="M14 8v8c0 9.941 8.059 18 18 18s18-8.059 18-18V8"/>
+                <path d="M32 38v10"/><circle cx="32" cy="52" r="4"/>
+              </svg>
+            </div>
+            <h3 class="doctor-card__name">DR. RAMESH KULKARNI</h3>
+            <p class="doctor-card__specialty">Pediatric Cardiologist</p>
+            <p class="doctor-card__quals">MD. DM (Cardiology)</p>
+          </div>
+          <a href="#contact-banner" class="doctor-card__btn" aria-label="View profile of Dr. Ramesh Kulkarni">VIEW PROFILE</a>
+        </article>
+
+        <!-- Doctor 6 (bonus) -->
+        <article class="doctor-card" role="listitem">
+          <div class="doctor-card__img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&q=80&auto=format&fit=crop&crop=face"
+              alt="Dr. Priya Sharma, Pediatric Neurologist"
+              class="doctor-card__img"
+              loading="lazy"
+            />
+          </div>
+          <div class="doctor-card__body">
+            <div class="doctor-card__watermark" aria-hidden="true">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 8c0 6.627 5.373 12 12 12s12-5.373 12-12"/>
+                <path d="M14 8v8c0 9.941 8.059 18 18 18s18-8.059 18-18V8"/>
+                <path d="M32 38v10"/><circle cx="32" cy="52" r="4"/>
+              </svg>
+            </div>
+            <h3 class="doctor-card__name">DR. PRIYA SHARMA</h3>
+            <p class="doctor-card__specialty">Pediatric Neurologist</p>
+            <p class="doctor-card__quals">MD. DM (Neurology)</p>
+          </div>
+          <a href="#contact-banner" class="doctor-card__btn" aria-label="View profile of Dr. Priya Sharma">VIEW PROFILE</a>
+        </article>
+
+      </div><!-- /.doctors__grid -->
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SERVICES SECTION
+  ========================================================= -->
+  <section class="services" id="services" aria-label="Our medical specialities">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">WHAT WE OFFER</span>
+        <h2 class="section-title">Our Medical <span class="text-teal">Specialities</span></h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+      </div>
+
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="20" cy="14" r="6"/><path d="M8 36v-2a12 12 0 0124 0v2"/><path d="M20 20v8M16 24h8"/></svg>
+          </div>
+          <h3>Neonatology &amp; NICU</h3>
+          <p>Level III NICU with latest ventilators and monitoring systems for premature and critically ill newborns.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 8c-3.5 0-10 3-10 10 0 8 10 14 10 14s10-6 10-14c0-7-6.5-10-10-10z"/></svg>
+          </div>
+          <h3>Pediatric Cardiology</h3>
+          <p>Comprehensive diagnosis of congenital heart diseases in children with advanced echocardiography.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="20" cy="18" rx="10" ry="12"/><path d="M14 30c-2 2-4 6-2 8M26 30c2 2 4 6 2 8M10 18H6M34 18h-4"/></svg>
+          </div>
+          <h3>Pediatric Neurology</h3>
+          <p>Expert care for childhood epilepsy and neurological conditions using cutting-edge diagnostics.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 24c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M8 28h24"/><path d="M20 16v-6M14 18l-4-4M26 18l4-4"/></svg>
+          </div>
+          <h3>Pediatric Pulmonology</h3>
+          <p>Specialized treatment for asthma, pneumonia, and chronic lung conditions in children.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="8" y="10" width="24" height="20" rx="3"/><path d="M20 14v12M14 20h12"/></svg>
+          </div>
+          <h3>Diagnostic Imaging</h3>
+          <p>Digital X-ray, ultrasound, CT scan, and MRI with pediatric protocols and rapid reporting.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="20" cy="20" r="12"/><path d="M20 12v8l5 5"/></svg>
+          </div>
+          <h3>24/7 Emergency</h3>
+          <p>Round-the-clock emergency care with dedicated pediatric emergency physicians always on call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       STATISTICS COUNTER
+  ========================================================= -->
+  <section class="stats" id="stats" aria-label="Hospital statistics">
+    <div class="container">
+      <div class="stats__grid">
+
+        <div class="stat-item">
+          <div class="stat-item__num" data-target="25" aria-live="polite">0</div>
+          <div class="stat-item__bar" aria-hidden="true"></div>
+          <div class="stat-item__label">HEART TRANSPLANTS</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-item__num" data-target="979" aria-live="polite">0</div>
+          <div class="stat-item__bar" aria-hidden="true"></div>
+          <div class="stat-item__label">BARIATRIC SURGERY</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-item__num" data-target="5264" aria-live="polite">0</div>
+          <div class="stat-item__bar" aria-hidden="true"></div>
+          <div class="stat-item__label">CRITICAL CARE</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-item__num" data-target="119" aria-live="polite">0</div>
+          <div class="stat-item__bar" aria-hidden="true"></div>
+          <div class="stat-item__label">EXPERT DOCTOR</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS
+  ========================================================= -->
+  <section class="testimonials" id="testimonials" aria-label="Patient testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">PATIENT STORIES</span>
+        <h2 class="section-title">REAL PATIENTS <span class="text-teal">REAL STORIES</span></h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+        <p class="section-subtitle">Hear from the families whose lives have been touched by our dedicated team of specialists.</p>
+      </div>
+
+      <div class="testimonials__grid" role="list">
+
+        <blockquote class="testimonial-card" role="listitem">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-card__text">"The NICU team at NHCH saved our premature baby's life. The doctors and nurses provided exceptional, round-the-clock care with unmatched dedication. We are forever grateful to this wonderful hospital."</p>
+          <footer class="testimonial-card__author">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&auto=format&fit=crop" alt="Priya Sharma" class="testimonial-card__avatar" loading="lazy"/>
+            <div>
+              <cite class="testimonial-card__name">Priya Sharma</cite>
+              <span class="testimonial-card__role">Mother — NICU Patient</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" role="listitem">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-card__text">"Dr. Sandeep Yadav is an extraordinary pediatrician. His calm demeanor and expertise made our child's treatment completely stress-free. The world-class infrastructure further reinforced our trust in NHCH."</p>
+          <footer class="testimonial-card__author">
+            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=80&q=80&auto=format&fit=crop" alt="Rahul Mehta" class="testimonial-card__avatar" loading="lazy"/>
+            <div>
+              <cite class="testimonial-card__name">Rahul Mehta</cite>
+              <span class="testimonial-card__role">Father — Pediatric Patient</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" role="listitem">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="testimonial-card__text">"The emergency team responded within minutes when our son had a severe asthma attack at 2 AM. Their life-saving quick action and the state-of-the-art equipment were simply incredible. NHCH is truly the best."</p>
+          <footer class="testimonial-card__author">
+            <img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=80&q=80&auto=format&fit=crop" alt="Anita Deshmukh" class="testimonial-card__avatar" loading="lazy"/>
+            <div>
+              <cite class="testimonial-card__name">Anita Deshmukh</cite>
+              <span class="testimonial-card__role">Parent — Emergency Patient</span>
+            </div>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CONTACT BANNER (PRE-FOOTER)
+  ========================================================= -->
+  <section class="contact-banner" id="contact-banner" aria-label="Contact information">
+    <div class="container contact-banner__grid">
+
+      <!-- Phone -->
+      <div class="contact-banner__item">
+        <div class="contact-banner__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="contact-banner__info">
+          <strong>GIVE US A CALL</strong>
+          <a href="tel:07770002397">077700 02397</a>
+        </div>
+      </div>
+
+      <div class="contact-banner__divider" aria-hidden="true"></div>
+
+      <!-- Email -->
+      <div class="contact-banner__item">
+        <div class="contact-banner__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+        </div>
+        <div class="contact-banner__info">
+          <strong>SEND US A MESSAGE</strong>
+          <a href="mailto:newhchnagpur@gmail.com">newhchnagpur@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-banner__divider" aria-hidden="true"></div>
+
+      <!-- Address -->
+      <div class="contact-banner__item">
+        <div class="contact-banner__icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="contact-banner__info">
+          <strong>VISIT OUR LOCATION</strong>
+          <address>Panchvati Tower, Beside The Hitvada Press,<br/>Lokmat Square, Wardha Road, Dhantoli,<br/>Nagpur, India, Maharashtra</address>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <div class="container footer__grid">
+
+      <!-- Column 1: Brand -->
+      <div class="footer__brand">
+        <a href="#hero" class="logo logo--white" aria-label="New Health City Hospital Home">
+          <div class="logo__box logo__box--footer">
+            <svg class="logo__emblem" viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="22" fill="rgba(255,255,255,0.1)" stroke="#45b39d" stroke-width="2"/>
+              <rect x="21" y="10" width="6" height="28" rx="3" fill="#45b39d"/>
+              <rect x="10" y="21" width="28" height="6" rx="3" fill="#45b39d"/>
+              <circle cx="24" cy="24" r="5" fill="rgba(255,255,255,0.05)"/>
+              <circle cx="24" cy="24" r="3" fill="#45b39d"/>
+            </svg>
+            <div class="logo__text">
+              <span class="logo__name logo__name--white">New Health City</span>
+              <span class="logo__sub">Hospital &amp; Research Center</span>
+            </div>
+          </div>
+        </a>
+        <p class="footer__tagline">A step towards next-gen healthcare. We provide the best childcare in central India with world-class infrastructure and compassionate expertise.</p>
+      </div>
+
+      <!-- Column 2: Pages -->
+      <div class="footer__col">
+        <h3 class="footer__heading">OUR PAGES</h3>
+        <ul class="footer__links" role="list">
+          <li><a href="#about-banner" class="footer__link">&rsaquo; About Us</a></li>
+          <li><a href="#doctors"      class="footer__link">&rsaquo; Our Team</a></li>
+          <li><a href="#testimonials" class="footer__link">&rsaquo; Blog</a></li>
+          <li><a href="#contact-banner" class="footer__link">&rsaquo; Contact</a></li>
+          <li><a href="#services"     class="footer__link">&rsaquo; Our Specialty</a></li>
+          <li><a href="#stats"        class="footer__link">&rsaquo; OPD Time</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact -->
+      <div class="footer__col">
+        <h3 class="footer__heading">CONTACT</h3>
+        <ul class="footer__contact" role="list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:07770002397">077700 02397</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            <a href="mailto:newhchnagpur@gmail.com">newhchnagpur@gmail.com</a>
+          </li>
+        </ul>
+        <!-- Social Icons -->
+        <div class="footer__socials">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Google Plus">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 12h7.5c.3 1-.1 4-2.3 5.7C15.7 19 14 20 12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8c2.1 0 4 .8 5.4 2.1L15.1 8.3C14.2 7.5 13.2 7 12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5c2.4 0 4-1.4 4.5-3H12v-2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>&copy; <span id="year"></span> New Health City Hospital &amp; Research Center. All Rights Reserved.</p>
+        <p>Designed with Harsh for better healthcare.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       SCROLL TO TOP BUTTON
+  ========================================================= -->
+  <button class="scroll-top" id="scroll-top-btn" aria-label="Scroll back to top" title="Back to top" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

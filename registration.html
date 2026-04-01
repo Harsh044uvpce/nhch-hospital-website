@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Registration — New Health City Hospital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal:#45b39d; --teal-dark:#2e8b74; --teal-light:#a8ddd3;
+      --navy:#0d1b2a; --navy-mid:#1a2e40; --navy-card:#162636;
+      --white:#ffffff; --text-muted:#8aacb8;
+      --border:rgba(69,179,157,0.18); --error:#e05c5c;
+      --shadow:0 8px 40px rgba(0,0,0,0.35);
+      --radius:12px; --radius-sm:7px;
+      --tr:0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden}
+
+    .bg-mesh{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(ellipse 80% 60% at 10% 20%,rgba(69,179,157,.10) 0%,transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 80%,rgba(69,179,157,.07) 0%,transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%,rgba(13,27,42,.9) 0%,var(--navy) 100%);
+      animation:meshShift 12s ease-in-out infinite alternate}
+    @keyframes meshShift{0%{background-position:0% 0%,100% 100%,50% 50%}100%{background-position:5% 10%,95% 90%,52% 48%}}
+    .particle{position:fixed;border-radius:50%;background:var(--teal);opacity:0;pointer-events:none;z-index:0;animation:floatUp linear infinite}
+    @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:.15}90%{opacity:.08}100%{transform:translateY(-20vh) scale(1);opacity:0}}
+
+    /* TOP BAR */
+    .top-bar{position:relative;z-index:10;background:rgba(13,27,42,.95);border-bottom:1px solid var(--border);padding:8px 0;backdrop-filter:blur(10px)}
+    .tb-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .tb-left{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+    .tb-item{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--text-muted);text-decoration:none;transition:color var(--tr);font-weight:500}
+    .tb-item:hover{color:var(--teal)}
+    .tb-item svg{width:14px;height:14px;flex-shrink:0}
+    .tb-right{display:flex;gap:8px}
+    .soc{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;color:var(--text-muted);transition:all var(--tr);text-decoration:none}
+    .soc svg{width:13px;height:13px}
+    .soc:hover{color:var(--teal);border-color:var(--teal);background:rgba(69,179,157,.08)}
+
+    /* HEADER */
+    .header{position:sticky;top:0;z-index:100;background:rgba(22,38,54,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+    .h-inner{max-width:1200px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo__emb{width:40px;height:40px}
+    .logo__name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--white);display:block;line-height:1.2}
+    .logo__sub{font-size:.65rem;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;display:block}
+    .back-btn{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-muted);text-decoration:none;padding:7px 16px;border:1px solid var(--border);border-radius:20px;transition:all var(--tr);font-weight:500}
+    .back-btn:hover{color:var(--teal);border-color:var(--teal);background:rgba(69,179,157,.06)}
+    .back-btn svg{width:14px;height:14px}
+
+    /* MAIN */
+    .page-wrap{position:relative;z-index:1;min-height:calc(100vh - 120px);padding:3rem 1.5rem 4rem;display:flex;flex-direction:column;align-items:center}
+
+    /* HERO */
+    .page-hero{text-align:center;margin-bottom:3rem;animation:heroIn .8s cubic-bezier(.4,0,.2,1) both}
+    @keyframes heroIn{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
+    .hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);background:rgba(69,179,157,.1);border:1px solid rgba(69,179,157,.25);border-radius:20px;padding:5px 14px;margin-bottom:1rem}
+    .hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:dot-pulse 2s ease-in-out infinite}
+    @keyframes dot-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;color:var(--white);margin-bottom:.75rem}
+    .hero-title em{color:var(--teal);font-style:italic}
+    .hero-sub{font-size:.95rem;color:var(--text-muted);max-width:520px;margin:0 auto;line-height:1.7}
+
+    /* STEPPER */
+    .stepper{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2.5rem;animation:heroIn .8s .15s cubic-bezier(.4,0,.2,1) both;width:100%;max-width:600px}
+    .step{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;flex:1}
+    .step-circle{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;border:2px solid rgba(69,179,157,.2);background:var(--navy-card);color:var(--text-muted);transition:all .4s ease;position:relative;z-index:2}
+    .step-circle svg{width:16px;height:16px;display:none}
+    .step-label{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);transition:color .4s;text-align:center}
+    .step.active .step-circle{border-color:var(--teal);background:rgba(69,179,157,.12);color:var(--teal);box-shadow:0 0 0 6px rgba(69,179,157,.08)}
+    .step.active .step-label{color:var(--teal)}
+    .step.done .step-circle{border-color:var(--teal);background:var(--teal);color:var(--white)}
+    .step.done .step-circle span{display:none}
+    .step.done .step-circle svg{display:block}
+    .step.done .step-label{color:var(--teal-light)}
+    .step-conn{flex:1;height:2px;background:rgba(69,179,157,.15);margin-bottom:22px;position:relative;overflow:hidden}
+    .step-conn::after{content:'';position:absolute;inset:0;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+    .step-conn.done::after{transform:scaleX(1)}
+
+    /* FORM CARD */
+    .form-card{width:100%;max-width:780px;background:var(--navy-card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,.03) inset;animation:cardIn .7s .2s cubic-bezier(.4,0,.2,1) both}
+    @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .card-head{background:linear-gradient(135deg,var(--navy-mid) 0%,rgba(69,179,157,.06) 100%);border-bottom:1px solid var(--border);padding:1.6rem 2rem;display:flex;align-items:center;gap:1rem}
+    .card-head-icon{width:48px;height:48px;border-radius:12px;background:rgba(69,179,157,.12);border:1px solid rgba(69,179,157,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .card-head-icon svg{width:24px;height:24px;color:var(--teal)}
+    .card-head-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--white);margin-bottom:2px}
+    .card-head-sub{font-size:.78rem;color:var(--text-muted)}
+    .card-body{padding:2rem}
+
+    /* STEPS */
+    .fstep{display:none}
+    .fstep.active{display:block;animation:stepIn .4s cubic-bezier(.4,0,.2,1) both}
+    @keyframes stepIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+    /* GRID */
+    .fg{display:grid;gap:1.2rem}
+    .fg2{grid-template-columns:1fr 1fr}
+    .fg3{grid-template-columns:1fr 1fr 1fr}
+    .full{grid-column:1/-1}
+
+    /* GROUP */
+    .fgroup{display:flex;flex-direction:column;gap:6px}
+    .flabel{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:5px}
+    .flabel .req{color:var(--teal);font-size:.9em}
+
+    /* INPUTS */
+    .finput,.fselect,.ftextarea{width:100%;padding:11px 14px;background:rgba(13,27,42,.7);border:1.5px solid rgba(69,179,157,.15);border-radius:var(--radius-sm);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.92rem;outline:none;transition:all var(--tr);-webkit-appearance:none;appearance:none}
+    .finput::placeholder,.ftextarea::placeholder{color:rgba(138,172,184,.45)}
+    .finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--teal);background:rgba(69,179,157,.04);box-shadow:0 0 0 3px rgba(69,179,157,.1)}
+    .finput.err,.fselect.err,.ftextarea.err{border-color:var(--error);box-shadow:0 0 0 3px rgba(224,92,92,.1)}
+    .finput.ok,.fselect.ok{border-color:rgba(69,179,157,.5)}
+    .fselect{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2345b39d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+    .fselect option{background:var(--navy-mid);color:var(--white)}
+    .ftextarea{resize:vertical;min-height:90px;line-height:1.6}
+
+    /* INPUT WRAP */
+    .iwrap{position:relative}
+    .iwrap .finput{padding-left:40px}
+    .iicon{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-muted);pointer-events:none;transition:color var(--tr)}
+    .iwrap:focus-within .iicon{color:var(--teal)}
+    .isuffix{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.8rem;pointer-events:none}
+    .pwd-tog{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);transition:color var(--tr);padding:4px;border-radius:4px;line-height:0}
+    .pwd-tog:hover{color:var(--teal)}
+    .pwd-tog svg{width:17px;height:17px}
+
+    /* PWD STRENGTH */
+    .pwd-bars{display:flex;gap:4px;margin-top:6px;margin-bottom:3px}
+    .pbar{height:3px;flex:1;border-radius:10px;background:rgba(138,172,184,.15);transition:background .4s}
+    .pbar.weak{background:#e05c5c}.pbar.fair{background:#e8a020}.pbar.good{background:var(--teal)}.pbar.strong{background:var(--teal-dark)}
+    .pwd-lbl{font-size:.72rem;color:var(--text-muted);font-weight:500}
+
+    /* ERRORS / HINTS */
+    .ferr{font-size:.72rem;color:var(--error);margin-top:3px;display:none;align-items:center;gap:4px;font-weight:500;animation:shake .3s ease}
+    .ferr.show{display:flex}
+    .ferr svg{width:12px;height:12px;flex-shrink:0}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+    .fhint{font-size:.72rem;color:var(--text-muted);margin-top:3px;line-height:1.5}
+
+    /* DOB */
+    input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.6) sepia(1) saturate(2) hue-rotate(130deg);cursor:pointer;opacity:.7}
+    input[type="date"]::-webkit-calendar-picker-indicator:hover{opacity:1}
+
+    /* GENDER RADIO */
+    .radio-grp{display:flex;gap:10px;flex-wrap:wrap}
+    .rcrd{flex:1;min-width:80px}
+    .rcrd input{display:none}
+    .rcrd-lbl{display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 8px;background:rgba(13,27,42,.7);border:1.5px solid rgba(69,179,157,.15);border-radius:var(--radius-sm);cursor:pointer;transition:all var(--tr);font-size:.78rem;font-weight:600;color:var(--text-muted)}
+    .rcrd-lbl svg{width:20px;height:20px;color:var(--text-muted);transition:color var(--tr)}
+    .rcrd input:checked+.rcrd-lbl{border-color:var(--teal);background:rgba(69,179,157,.08);color:var(--teal);box-shadow:0 0 0 3px rgba(69,179,157,.1)}
+    .rcrd input:checked+.rcrd-lbl svg{color:var(--teal)}
+    .rcrd-lbl:hover{border-color:rgba(69,179,157,.4);color:var(--teal-light)}
+
+    /* BLOOD GROUP */
+    .bg-grid{display:flex;flex-wrap:wrap;gap:8px}
+    .bpill input{display:none}
+    .bpill-lbl{display:flex;align-items:center;justify-content:center;width:50px;height:34px;background:rgba(13,27,42,.7);border:1.5px solid rgba(69,179,157,.15);border-radius:6px;cursor:pointer;transition:all var(--tr);font-size:.82rem;font-weight:700;color:var(--text-muted);font-family:'DM Sans',sans-serif}
+    .bpill input:checked+.bpill-lbl{border-color:#e05c5c;background:rgba(224,92,92,.12);color:#e07070;box-shadow:0 0 0 3px rgba(224,92,92,.1)}
+    .bpill-lbl:hover{border-color:rgba(69,179,157,.4)}
+
+    /* CHECKBOX */
+    .ckwrap{display:flex;align-items:flex-start;gap:10px}
+    .ckwrap input{display:none}
+    .ck-box{width:18px;height:18px;border-radius:4px;flex-shrink:0;margin-top:1px;border:1.5px solid rgba(69,179,157,.3);background:rgba(13,27,42,.7);cursor:pointer;transition:all var(--tr);display:flex;align-items:center;justify-content:center}
+    .ck-box svg{width:11px;height:11px;color:var(--white);display:none}
+    .ckwrap input:checked+.ck-box{background:var(--teal);border-color:var(--teal)}
+    .ckwrap input:checked+.ck-box svg{display:block}
+    .ck-lbl{font-size:.83rem;color:var(--text-muted);line-height:1.6;cursor:pointer}
+    .ck-lbl a{color:var(--teal);text-decoration:none}
+    .ck-lbl a:hover{text-decoration:underline}
+
+    /* FILE UPLOAD */
+    .file-area{border:2px dashed rgba(69,179,157,.2);border-radius:var(--radius);padding:1.5rem;text-align:center;cursor:pointer;transition:all var(--tr);background:rgba(13,27,42,.4)}
+    .file-area:hover,.file-area.drag{border-color:var(--teal);background:rgba(69,179,157,.04)}
+    .file-area input{display:none}
+    .file-area svg{width:36px;height:36px;color:var(--teal);margin:0 auto 8px;opacity:.7;display:block}
+    .file-area-title{font-size:.88rem;font-weight:600;color:var(--text-muted)}
+    .file-area-sub{font-size:.72rem;color:rgba(138,172,184,.5);margin-top:4px}
+    .file-preview{display:none;font-size:.8rem;color:var(--teal);margin-top:8px;font-weight:500}
+
+    /* SECTION LABEL */
+    .sec-lbl{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:1.2rem;margin-top:.5rem;display:flex;align-items:center;gap:8px}
+    .sec-lbl::before{content:'';width:4px;height:14px;border-radius:3px;background:var(--teal);flex-shrink:0}
+
+    /* DIVIDER */
+    .fdiv{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
+
+    /* PHONE */
+    .phone-wrap{display:flex}
+    .phone-flag{display:flex;align-items:center;padding:0 12px;background:rgba(13,27,42,.7);border:1.5px solid rgba(69,179,157,.15);border-right:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);font-size:.85rem;color:var(--text-muted);font-weight:600;gap:6px;white-space:nowrap;flex-shrink:0}
+    .phone-wrap .finput{border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+
+    /* REVIEW */
+    .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .rev-block{background:rgba(13,27,42,.5);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem 1.2rem}
+    .rev-title{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem}
+    .rev-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:1rem}
+    .rev-row:last-child{margin-bottom:0}
+    .rev-key{font-size:.75rem;color:var(--text-muted);font-weight:500}
+    .rev-val{font-size:.82rem;color:var(--white);font-weight:600;text-align:right}
+    .rev-full{grid-column:1/-1}
+
+    /* BUTTONS */
+    .btn-grp{display:flex;gap:12px;justify-content:flex-end;padding-top:1.5rem;margin-top:.5rem;border-top:1px solid var(--border)}
+    .btn{padding:12px 28px;border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+    .btn svg{width:16px;height:16px;transition:transform var(--tr)}
+    .btn-primary{background:var(--teal);color:var(--white);box-shadow:0 4px 20px rgba(69,179,157,.3)}
+    .btn-primary:hover{background:var(--teal-dark);box-shadow:0 6px 28px rgba(69,179,157,.4);transform:translateY(-1px)}
+    .btn-primary:hover svg{transform:translateX(3px)}
+    .btn-outline{background:transparent;color:var(--text-muted);border:1.5px solid rgba(138,172,184,.2)}
+    .btn-outline:hover{color:var(--white);border-color:rgba(138,172,184,.5);background:rgba(255,255,255,.03)}
+    .btn-outline:hover svg{transform:translateX(-3px)}
+    .btn-lg{padding:14px 36px;font-size:.95rem}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+    .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:sp .7s linear infinite;display:none}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .btn.loading .spin{display:block}
+    .btn.loading .btn-txt{display:none}
+    .btn.loading svg:not(.spin){display:none}
+
+    /* SUCCESS */
+    .success-scr{display:none;text-align:center;padding:2rem 1rem;animation:sucIn .6s cubic-bezier(.4,0,.2,1) both}
+    @keyframes sucIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+    .suc-icon{width:90px;height:90px;border-radius:50%;background:rgba(69,179,157,.12);border:2px solid rgba(69,179,157,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;animation:iconPop .6s .3s cubic-bezier(.4,0,.2,1) both}
+    @keyframes iconPop{from{transform:scale(0);opacity:0}70%{transform:scale(1.1)}to{transform:scale(1);opacity:1}}
+    .suc-icon svg{width:42px;height:42px;color:var(--teal)}
+    .pid-badge{display:inline-block;background:rgba(69,179,157,.1);border:1px solid rgba(69,179,157,.25);border-radius:8px;padding:10px 24px;margin:1rem 0;font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--teal);letter-spacing:.05em}
+    .suc-steps{margin-top:2rem}
+    .suc-step{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border-radius:var(--radius-sm);margin-bottom:8px;background:rgba(13,27,42,.5);border:1px solid var(--border);animation:slr .5s ease both}
+    .suc-step:nth-child(1){animation-delay:.4s}
+    .suc-step:nth-child(2){animation-delay:.55s}
+    .suc-step:nth-child(3){animation-delay:.7s}
+    @keyframes slr{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+    .suc-num{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:rgba(69,179,157,.12);border:1px solid rgba(69,179,157,.25);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--teal)}
+    .suc-txt{font-size:.83rem;color:var(--text-muted);line-height:1.5}
+
+    /* TRUST */
+    .trust{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;animation:heroIn .8s .4s both}
+    .trust-item{display:flex;align-items:center;gap:6px;font-size:.74rem;color:var(--text-muted);font-weight:500}
+    .trust-item svg{width:15px;height:15px;color:var(--teal)}
+
+    /* FOOTER */
+    .foot{position:relative;z-index:1;background:rgba(13,27,42,.95);border-top:1px solid var(--border);padding:1rem 2rem;text-align:center;font-size:.75rem;color:var(--text-muted)}
+    .foot a{color:var(--teal);text-decoration:none}
+
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      .fg2,.fg3{grid-template-columns:1fr}
+      .rev-grid{grid-template-columns:1fr}
+      .card-body{padding:1.3rem}
+      .btn-grp{flex-direction:column-reverse}
+      .btn{justify-content:center}
+      .hero-title{font-size:1.8rem}
+      .phone-wrap{flex-direction:column}
+      .phone-flag{border-radius:var(--radius-sm) var(--radius-sm) 0 0;border-right:1.5px solid rgba(69,179,157,.15);border-bottom:none;padding:8px 12px}
+      .phone-wrap .finput{border-radius:0 0 var(--radius-sm) var(--radius-sm)}
+      .bpill-lbl{width:44px;height:30px;font-size:.75rem}
+      .radio-grp{gap:6px}
+    }
+    @media(max-width:480px){
+      .h-inner{padding:.7rem 1rem}
+      .page-wrap{padding:1.5rem .8rem 3rem}
+      .step-circle{width:34px;height:34px;font-size:.75rem}
+      .step-label{font-size:.6rem}
+      .tb-inner{flex-direction:column;gap:4px}
+    }
+  </style>
+</head>
+<body>
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="tb-inner">
+    <div class="tb-left">
+      <a href="mailto:newhchnagpur@gmail.com" class="tb-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        newhchnagpur@gmail.com
+      </a>
+      <span class="tb-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Open 24 Hours
+      </span>
+    </div>
+    <div class="tb-right">
+      <a href="#" class="soc" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      <a href="#" class="soc" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="h-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo__emb" viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="22" fill="#fff" stroke="#45b39d" stroke-width="2"/>
+        <rect x="21" y="10" width="6" height="28" rx="3" fill="#45b39d"/>
+        <rect x="10" y="21" width="28" height="6" rx="3" fill="#45b39d"/>
+        <circle cx="24" cy="24" r="5" fill="#fff"/>
+        <circle cx="24" cy="24" r="3" fill="#45b39d"/>
+      </svg>
+      <div>
+        <span class="logo__name">New Health City</span>
+        <span class="logo__sub">Hospital &amp; Research Center</span>
+      </div>
+    </a>
+    <a href="index.html" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Home
+    </a>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="page-wrap">
+  <!-- Hero -->
+  <div class="page-hero">
+    <span class="hero-tag">Patient Portal</span>
+    <h1 class="hero-title">Create Your <em>Health</em> Account</h1>
+    <p class="hero-sub">Register once, manage all your appointments, records &amp; medical history at New Health City Hospital.</p>
+  </div>
+
+  <!-- Stepper -->
+  <div class="stepper" id="stepper">
+    <div class="step active" id="si1">
+      <div class="step-circle"><span>1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="step-label">Personal</div>
+    </div>
+    <div class="step-conn" id="cn1"></div>
+    <div class="step" id="si2">
+      <div class="step-circle"><span>2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="step-label">Medical</div>
+    </div>
+    <div class="step-conn" id="cn2"></div>
+    <div class="step" id="si3">
+      <div class="step-circle"><span>3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="step-label">Account</div>
+    </div>
+    <div class="step-conn" id="cn3"></div>
+    <div class="step" id="si4">
+      <div class="step-circle"><span>4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="step-label">Review</div>
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <!-- Card Head -->
+    <div class="card-head" id="card-head">
+      <div class="card-head-icon" id="head-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <div class="card-head-title" id="head-title">Personal Information</div>
+        <div class="card-head-sub" id="head-sub">Step 1 of 4 — Tell us about yourself</div>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <!-- STEP 1: Personal -->
+      <div class="fstep active" id="step1">
+        <div class="fg">
+          <div class="sec-lbl">Basic Details</div>
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel" for="fn">First Name <span class="req">*</span></label>
+              <div class="iwrap">
+                <svg class="iicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="fn" class="finput" placeholder="e.g. Ravi" autocomplete="given-name"/>
+              </div>
+              <div class="ferr" id="e-fn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>First name is required</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="ln">Last Name <span class="req">*</span></label>
+              <input type="text" id="ln" class="finput" placeholder="e.g. Sharma" autocomplete="family-name"/>
+              <div class="ferr" id="e-ln"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Last name is required</div>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel">Gender <span class="req">*</span></label>
+            <div class="radio-grp">
+              <label class="rcrd"><input type="radio" name="gender" value="Male"><span class="rcrd-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="5"/><path d="M12 14v4M9 20h6"/></svg>Male</span></label>
+              <label class="rcrd"><input type="radio" name="gender" value="Female"><span class="rcrd-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="5"/><path d="M12 14v4M9 18h6"/></svg>Female</span></label>
+              <label class="rcrd"><input type="radio" name="gender" value="Other"><span class="rcrd-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>Other</span></label>
+              <label class="rcrd"><input type="radio" name="gender" value="Prefer not"><span class="rcrd-lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>Prefer not</span></label>
+            </div>
+            <div class="ferr" id="e-gender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Please select your gender</div>
+          </div>
+
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel" for="dob">Date of Birth <span class="req">*</span></label>
+              <div class="iwrap">
+                <svg class="iicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <input type="date" id="dob" class="finput"/>
+              </div>
+              <div class="ferr" id="e-dob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Date of birth is required</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="age">Age</label>
+              <div class="iwrap">
+                <input type="number" id="age" class="finput" placeholder="Auto-calculated" readonly style="cursor:not-allowed;opacity:.7"/>
+                <span class="isuffix">yrs</span>
+              </div>
+              <div class="fhint">Calculated from date of birth</div>
+            </div>
+          </div>
+
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel" for="ph">Mobile Number <span class="req">*</span></label>
+              <div class="phone-wrap">
+                <div class="phone-flag">&#127470;&#127475; +91</div>
+                <input type="tel" id="ph" class="finput" placeholder="98765 43210" maxlength="10"/>
+              </div>
+              <div class="ferr" id="e-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Enter a valid 10-digit number</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="aph">Alternate Phone</label>
+              <div class="phone-wrap">
+                <div class="phone-flag">&#127470;&#127475; +91</div>
+                <input type="tel" id="aph" class="finput" placeholder="Optional" maxlength="10"/>
+              </div>
+            </div>
+          </div>
+
+          <hr class="fdiv"/>
+          <div class="sec-lbl">Address</div>
+
+          <div class="fgroup full">
+            <label class="flabel" for="addr">Street Address <span class="req">*</span></label>
+            <textarea id="addr" class="ftextarea" placeholder="Flat / House No., Street, Colony..."></textarea>
+            <div class="ferr" id="e-addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Address is required</div>
+          </div>
+
+          <div class="fg fg3">
+            <div class="fgroup">
+              <label class="flabel" for="city">City <span class="req">*</span></label>
+              <input type="text" id="city" class="finput" placeholder="Nagpur"/>
+              <div class="ferr" id="e-city"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>City required</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="state">State <span class="req">*</span></label>
+              <select id="state" class="fselect">
+                <option value="">Select State</option>
+                <option selected>Maharashtra</option>
+                <option>Delhi</option><option>Karnataka</option><option>Gujarat</option>
+                <option>Tamil Nadu</option><option>West Bengal</option><option>Rajasthan</option>
+                <option>Uttar Pradesh</option><option>Madhya Pradesh</option><option>Other</option>
+              </select>
+              <div class="ferr" id="e-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>State required</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="pin">PIN Code <span class="req">*</span></label>
+              <input type="text" id="pin" class="finput" placeholder="440001" maxlength="6"/>
+              <div class="ferr" id="e-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Enter valid 6-digit PIN</div>
+            </div>
+          </div>
+
+          <div class="btn-grp">
+            <button class="btn btn-primary" id="nx1"><span class="btn-txt">Continue</span><div class="spin"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Medical -->
+      <div class="fstep" id="step2">
+        <div class="sec-lbl">Medical History</div>
+        <div class="fg">
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel">Blood Group <span class="req">*</span></label>
+              <div class="bg-grid">
+                <label class="bpill"><input type="radio" name="bg" value="A+"><span class="bpill-lbl">A+</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="A-"><span class="bpill-lbl">A&minus;</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="B+"><span class="bpill-lbl">B+</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="B-"><span class="bpill-lbl">B&minus;</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="O+"><span class="bpill-lbl">O+</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="O-"><span class="bpill-lbl">O&minus;</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="AB+"><span class="bpill-lbl">AB+</span></label>
+                <label class="bpill"><input type="radio" name="bg" value="AB-"><span class="bpill-lbl">AB&minus;</span></label>
+              </div>
+              <div class="ferr" id="e-bg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Select blood group</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="dept">Department <span class="req">*</span></label>
+              <select id="dept" class="fselect">
+                <option value="">Select Department</option>
+                <option>Neonatology &amp; NICU</option>
+                <option>Pediatric Cardiology</option>
+                <option>Pediatric Neurology</option>
+                <option>Pediatric Pulmonology</option>
+                <option>Pediatric Intensivist (PICU)</option>
+                <option>General Pediatrics</option>
+                <option>Diagnostic Imaging</option>
+                <option>Emergency &amp; Trauma</option>
+                <option>Bariatric Surgery</option>
+                <option>General Medicine</option>
+              </select>
+              <div class="ferr" id="e-dept"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Select a department</div>
+            </div>
+          </div>
+
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel" for="doc">Preferred Doctor</label>
+              <select id="doc" class="fselect">
+                <option value="">No preference</option>
+                <option>Dr. Sandeep Yadav — Pediatrician</option>
+                <option>Dr. Pallavi Bapat Pinge — Paediatrician</option>
+                <option>Dr. Nitin Bhoyar — Pediatric Intensivist</option>
+                <option>Dr. Anjali Mehta — Neonatologist</option>
+                <option>Dr. Ramesh Kulkarni — Pediatric Cardiologist</option>
+                <option>Dr. Priya Sharma — Pediatric Neurologist</option>
+              </select>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="vtype">Visit Type <span class="req">*</span></label>
+              <select id="vtype" class="fselect">
+                <option value="">Select type</option>
+                <option>New Patient</option>
+                <option>Follow-up</option>
+                <option>Emergency</option>
+                <option>Vaccination</option>
+                <option>Diagnostic / Lab Test</option>
+              </select>
+              <div class="ferr" id="e-vtype"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Select visit type</div>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="allerg">Known Allergies</label>
+            <input type="text" id="allerg" class="finput" placeholder="e.g. Penicillin, Aspirin (leave blank if none)"/>
+            <div class="fhint">Separate multiple entries with commas</div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="meds">Current Medications</label>
+            <textarea id="meds" class="ftextarea" placeholder="List any medications you are currently taking..."></textarea>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="medhist">Medical History / Conditions</label>
+            <textarea id="medhist" class="ftextarea" placeholder="e.g. Diabetes, Hypertension, Previous surgeries..."></textarea>
+          </div>
+
+          <hr class="fdiv"/>
+          <div class="sec-lbl">Emergency Contact</div>
+
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel" for="en">Contact Name <span class="req">*</span></label>
+              <input type="text" id="en" class="finput" placeholder="Full name"/>
+              <div class="ferr" id="e-en"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Required</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="erel">Relationship <span class="req">*</span></label>
+              <select id="erel" class="fselect">
+                <option value="">Select</option>
+                <option>Spouse</option><option>Parent</option><option>Child</option>
+                <option>Sibling</option><option>Friend</option><option>Guardian</option><option>Other</option>
+              </select>
+              <div class="ferr" id="e-erel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Required</div>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="eph">Contact Mobile <span class="req">*</span></label>
+            <div class="phone-wrap">
+              <div class="phone-flag">&#127470;&#127475; +91</div>
+              <input type="tel" id="eph" class="finput" placeholder="Emergency contact number" maxlength="10"/>
+            </div>
+            <div class="ferr" id="e-eph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Enter valid 10-digit number</div>
+          </div>
+
+          <div class="btn-grp">
+            <button class="btn btn-outline" id="pv2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span class="btn-txt">Back</span></button>
+            <button class="btn btn-primary" id="nx2"><span class="btn-txt">Continue</span><div class="spin"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Account -->
+      <div class="fstep" id="step3">
+        <div class="sec-lbl">Login Credentials</div>
+        <div class="fg">
+          <div class="fgroup">
+            <label class="flabel" for="email">Email Address <span class="req">*</span></label>
+            <div class="iwrap">
+              <svg class="iicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+              <input type="email" id="email" class="finput" placeholder="yourname@example.com"/>
+            </div>
+            <div class="ferr" id="e-email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Enter a valid email address</div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="pwd">Password <span class="req">*</span></label>
+            <div class="iwrap">
+              <svg class="iicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              <input type="password" id="pwd" class="finput" placeholder="Create a strong password" style="padding-right:42px"/>
+              <button class="pwd-tog" type="button" id="ptog" aria-label="Toggle password">
+                <svg id="eye-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div id="pwd-str" style="display:none">
+              <div class="pwd-bars">
+                <div class="pbar" id="pb1"></div><div class="pbar" id="pb2"></div>
+                <div class="pbar" id="pb3"></div><div class="pbar" id="pb4"></div>
+              </div>
+              <div class="pwd-lbl" id="plbl"></div>
+            </div>
+            <div class="ferr" id="e-pwd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Password must be at least 8 characters</div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="cpwd">Confirm Password <span class="req">*</span></label>
+            <div class="iwrap">
+              <svg class="iicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <input type="password" id="cpwd" class="finput" placeholder="Re-enter your password"/>
+            </div>
+            <div class="ferr" id="e-cpwd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Passwords do not match</div>
+          </div>
+
+          <hr class="fdiv"/>
+          <div class="sec-lbl">Identity &amp; Documents</div>
+
+          <div class="fg fg2">
+            <div class="fgroup">
+              <label class="flabel" for="idtype">ID Proof Type</label>
+              <select id="idtype" class="fselect">
+                <option value="">Select</option>
+                <option>Aadhaar Card</option><option>PAN Card</option>
+                <option>Voter ID</option><option>Passport</option><option>Driving Licence</option>
+              </select>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="idnum">ID Number</label>
+              <input type="text" id="idnum" class="finput" placeholder="Document number"/>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel">Upload Document <small style="text-transform:none;font-weight:400;color:rgba(138,172,184,.6)">(Optional)</small></label>
+            <div class="file-area" id="farea">
+              <input type="file" id="fdoc" accept=".pdf,.jpg,.jpeg,.png"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <div class="file-area-title">Click to upload or drag &amp; drop</div>
+              <div class="file-area-sub">PDF, JPG or PNG &bull; Max 5MB</div>
+              <div class="file-preview" id="fprev"></div>
+            </div>
+          </div>
+
+          <hr class="fdiv"/>
+
+          <div class="fgroup">
+            <label class="ckwrap">
+              <input type="checkbox" id="ckterms">
+              <span class="ck-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="ck-lbl">I agree to the <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy Policy</a> of New Health City Hospital. <span class="req">*</span></span>
+            </label>
+            <div class="ferr" id="e-terms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>You must accept the terms</div>
+          </div>
+          <div class="fgroup">
+            <label class="ckwrap">
+              <input type="checkbox" id="ckupdates">
+              <span class="ck-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <span class="ck-lbl">Receive appointment reminders and health tips via SMS &amp; email</span>
+            </label>
+          </div>
+
+          <div class="btn-grp">
+            <button class="btn btn-outline" id="pv3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span class="btn-txt">Back</span></button>
+            <button class="btn btn-primary" id="nx3"><span class="btn-txt">Review &amp; Submit</span><div class="spin"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: Review -->
+      <div class="fstep" id="step4">
+        <div class="sec-lbl">Review Your Details</div>
+        <div class="rev-grid" id="rev-grid"></div>
+        <hr class="fdiv"/>
+        <div class="btn-grp">
+          <button class="btn btn-outline" id="pv4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span class="btn-txt">Edit Details</span></button>
+          <button class="btn btn-primary btn-lg" id="submit"><span class="btn-txt">Complete Registration</span><div class="spin"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-scr" id="suc">
+        <div class="suc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:.5rem">Registration Successful!</h2>
+        <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:.5rem">Welcome to New Health City Hospital. Your Patient ID:</p>
+        <div class="pid-badge" id="pid">NHCH-2024-00000</div>
+        <p style="color:var(--text-muted);font-size:.82rem">Confirmation sent to your registered email &amp; phone.</p>
+        <div class="suc-steps">
+          <div class="suc-step"><div class="suc-num">1</div><div class="suc-txt"><strong style="color:var(--white)">Check your email</strong> — Confirmation &amp; login credentials sent</div></div>
+          <div class="suc-step"><div class="suc-num">2</div><div class="suc-txt"><strong style="color:var(--white)">Book your appointment</strong> — Use the portal or call 077700 02397</div></div>
+          <div class="suc-step"><div class="suc-num">3</div><div class="suc-txt"><strong style="color:var(--white)">Visit NHCH</strong> — Bring your Patient ID &amp; a valid photo ID</div></div>
+        </div>
+        <div style="margin-top:2rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="appointment.html" class="btn btn-primary btn-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book Appointment</a>
+          <a href="index.html" class="btn btn-outline btn-lg">Return to Home</a>
+        </div>
+      </div>
+
+    </div><!-- /card-body -->
+  </div><!-- /form-card -->
+
+  <!-- Trust badges -->
+  <div class="trust">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>SSL Secured</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>NABH Accredited</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>HIPAA Compliant</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>24/7 Support</div>
+  </div>
+</main>
+
+<footer class="foot">&copy; <span id="yr"></span> New Health City Hospital &amp; Research Center &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms</a> &nbsp;|&nbsp; <a href="tel:07770002397">077700 02397</a></footer>
+
+<script>
+// Particles
+(function(){for(let i=0;i<18;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*4+1;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*14+10}s;animation-delay:${Math.random()*12}s`;document.body.appendChild(p)}})();
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// DOB -> Age
+document.getElementById('dob').addEventListener('change',function(){
+  const d=new Date(this.value),t=new Date();let a=t.getFullYear()-d.getFullYear();
+  const m=t.getMonth()-d.getMonth();if(m<0||(m===0&&t.getDate()<d.getDate()))a--;
+  document.getElementById('age').value=a>0&&a<130?a:'';
+});
+
+// Password strength
+document.getElementById('pwd').addEventListener('input',function(){
+  const v=this.value,str=document.getElementById('pwd-str');
+  if(!v){str.style.display='none';return}str.style.display='block';
+  let s=0;if(v.length>=8)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;
+  const cls=['','weak','fair','good','strong'],lbl=['','Weak — Use uppercase, numbers & symbols','Fair — Add a number or symbol','Good — Try adding a special character','Strong password!'],col=['','#e05c5c','#e8a020','var(--teal)','var(--teal-dark)'];
+  ['pb1','pb2','pb3','pb4'].forEach((id,i)=>{const el=document.getElementById(id);el.className='pbar';if(i<s)el.classList.add(cls[s])});
+  const pl=document.getElementById('plbl');pl.textContent=lbl[s];pl.style.color=col[s];
+});
+
+// Password toggle
+document.getElementById('ptog').addEventListener('click',function(){
+  const p=document.getElementById('pwd');const t=p.type==='text';
+  p.type=t?'password':'text';
+  this.querySelector('svg').innerHTML=t?'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>':'<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+});
+
+// File upload
+const fa=document.getElementById('farea'),fi=document.getElementById('fdoc'),fp=document.getElementById('fprev');
+fa.addEventListener('click',()=>fi.click());
+fa.addEventListener('dragover',e=>{e.preventDefault();fa.classList.add('drag')});
+fa.addEventListener('dragleave',()=>fa.classList.remove('drag'));
+fa.addEventListener('drop',e=>{e.preventDefault();fa.classList.remove('drag');if(e.dataTransfer.files[0])hf(e.dataTransfer.files[0])});
+fi.addEventListener('change',()=>{if(fi.files[0])hf(fi.files[0])});
+function hf(f){if(f.size>5*1024*1024){alert('File too large. Max 5MB.');return}fp.style.display='block';fp.textContent='✓ '+f.name}
+
+// Checkbox custom click
+document.querySelectorAll('.ck-box').forEach(el=>{el.addEventListener('click',()=>{const i=el.previousElementSibling;i.checked=!i.checked})});
+document.querySelectorAll('.ck-lbl').forEach(el=>{el.addEventListener('click',e=>{if(e.target.tagName==='A')return;const i=el.closest('.ckwrap').querySelector('input');i.checked=!i.checked})});
+
+// Validation
+const V={
+  fn:v=>v.length>=2, ln:v=>v.length>=2, dob:v=>!!v,
+  ph:v=>/^\d{10}$/.test(v), addr:v=>v.length>=5,
+  city:v=>v.length>=2, state:v=>!!v, pin:v=>/^\d{6}$/.test(v),
+  bg:()=>!!document.querySelector('input[name="bg"]:checked'),
+  dept:v=>!!v, vtype:v=>!!v, en:v=>v.length>=2, erel:v=>!!v,
+  eph:v=>/^\d{10}$/.test(v),
+  email:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+  pwd:v=>v.length>=8, cpwd:v=>v===document.getElementById('pwd').value&&v.length>0,
+  terms:()=>document.getElementById('ckterms').checked
+};
+function getV(id){
+  if(id==='bg')return'';
+  if(id==='terms')return'';
+  const el=document.getElementById(id);return el?el.value.trim():'';
+}
+function showE(id){const el=document.getElementById('e-'+id);if(el)el.classList.add('show')}
+function hideE(id){const el=document.getElementById('e-'+id);if(el)el.classList.remove('show')}
+function markF(id,ok){const el=document.getElementById(id);if(!el)return;el.classList.toggle('err',!ok);el.classList.toggle('ok',ok)}
+function vf(id){
+  const val=getV(id);const fn=V[id];if(!fn)return true;
+  const ok=fn(val);markF(id,ok);ok?hideE(id):showE(id);return ok;
+}
+['fn','ln','dob','ph','addr','city','state','pin','dept','vtype','en','erel','eph','email','pwd','cpwd'].forEach(id=>{
+  const el=document.getElementById(id);if(!el)return;
+  el.addEventListener('input',()=>{hideE(id);el.classList.remove('err','ok')});
+  el.addEventListener('blur',()=>vf(id));
+});
+
+// Digits only
+['ph','aph','eph'].forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10)})});
+document.getElementById('pin').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,6)});
+
+// Step config
+const heads=[null,
+  {icon:'<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>',t:'Personal Information',s:'Step 1 of 4 — Tell us about yourself'},
+  {icon:'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/>',t:'Medical Information',s:'Step 2 of 4 — Health &amp; emergency details'},
+  {icon:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',t:'Account Setup',s:'Step 3 of 4 — Secure your account'},
+  {icon:'<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',t:'Review &amp; Confirm',s:'Step 4 of 4 — Almost there!'}
+];
+function goStep(n){
+  document.querySelectorAll('.fstep').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  // stepper
+  for(let i=1;i<=4;i++){const si=document.getElementById('si'+i);si.classList.remove('active','done');if(i<n)si.classList.add('done');else if(i===n)si.classList.add('active');if(i<4)document.getElementById('cn'+i).classList.toggle('done',i<n)}
+  // head
+  const h=heads[n];
+  document.getElementById('head-icon').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${h.icon}</svg>`;
+  document.getElementById('head-title').innerHTML=h.t;
+  document.getElementById('head-sub').innerHTML=h.s;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function wl(btn,fn){btn.classList.add('loading');btn.disabled=true;setTimeout(()=>{btn.classList.remove('loading');btn.disabled=false;fn()},600)}
+
+// Step 1
+document.getElementById('nx1').addEventListener('click',function(){
+  const flds=['fn','ln','dob','ph','addr','city','state','pin'];
+  let ok=flds.reduce((a,id)=>vf(id)&&a,true);
+  if(!document.querySelector('input[name="gender"]:checked')){showE('gender');ok=false}else hideE('gender');
+  if(ok)wl(this,()=>goStep(2));
+});
+// Step 2
+document.getElementById('pv2').addEventListener('click',()=>goStep(1));
+document.getElementById('nx2').addEventListener('click',function(){
+  const flds=['dept','vtype','en','erel','eph'];
+  let ok=flds.reduce((a,id)=>vf(id)&&a,true);
+  if(!document.querySelector('input[name="bg"]:checked')){showE('bg');ok=false}else hideE('bg');
+  if(ok)wl(this,()=>goStep(3));
+});
+// Step 3
+document.getElementById('pv3').addEventListener('click',()=>goStep(2));
+document.getElementById('nx3').addEventListener('click',function(){
+  let ok=['email','pwd','cpwd'].reduce((a,id)=>vf(id)&&a,true);
+  if(!document.getElementById('ckterms').checked){showE('terms');ok=false}else hideE('terms');
+  if(ok)wl(this,()=>{buildRev();goStep(4)});
+});
+document.getElementById('pv4').addEventListener('click',()=>goStep(3));
+
+// Review
+function gv(id){const e=document.getElementById(id);return e?(e.value.trim()||'—'):'—'}
+function gr(name){const e=document.querySelector(`input[name="${name}"]:checked`);return e?e.value:'—'}
+function buildRev(){
+  const age=gv('age');
+  document.getElementById('rev-grid').innerHTML=`
+    <div class="rev-block"><div class="rev-title">Personal</div>
+      <div class="rev-row"><span class="rev-key">Full Name</span><span class="rev-val">${gv('fn')} ${gv('ln')}</span></div>
+      <div class="rev-row"><span class="rev-key">Gender</span><span class="rev-val">${gr('gender')}</span></div>
+      <div class="rev-row"><span class="rev-key">Date of Birth</span><span class="rev-val">${gv('dob')}${age&&age!=='—'?' ('+age+' yrs)':''}</span></div>
+      <div class="rev-row"><span class="rev-key">Mobile</span><span class="rev-val">+91 ${gv('ph')}</span></div>
+    </div>
+    <div class="rev-block"><div class="rev-title">Address</div>
+      <div class="rev-row"><span class="rev-key">Street</span><span class="rev-val">${gv('addr')}</span></div>
+      <div class="rev-row"><span class="rev-key">City</span><span class="rev-val">${gv('city')}</span></div>
+      <div class="rev-row"><span class="rev-key">State</span><span class="rev-val">${gv('state')}</span></div>
+      <div class="rev-row"><span class="rev-key">PIN</span><span class="rev-val">${gv('pin')}</span></div>
+    </div>
+    <div class="rev-block"><div class="rev-title">Medical</div>
+      <div class="rev-row"><span class="rev-key">Blood Group</span><span class="rev-val">${gr('bg')}</span></div>
+      <div class="rev-row"><span class="rev-key">Department</span><span class="rev-val">${gv('dept')}</span></div>
+      <div class="rev-row"><span class="rev-key">Visit Type</span><span class="rev-val">${gv('vtype')}</span></div>
+      <div class="rev-row"><span class="rev-key">Allergies</span><span class="rev-val">${gv('allerg')}</span></div>
+    </div>
+    <div class="rev-block"><div class="rev-title">Emergency Contact</div>
+      <div class="rev-row"><span class="rev-key">Name</span><span class="rev-val">${gv('en')}</span></div>
+      <div class="rev-row"><span class="rev-key">Relation</span><span class="rev-val">${gv('erel')}</span></div>
+      <div class="rev-row"><span class="rev-key">Mobile</span><span class="rev-val">+91 ${gv('eph')}</span></div>
+    </div>
+    <div class="rev-block rev-full"><div class="rev-title">Account</div>
+      <div class="rev-row"><span class="rev-key">Email</span><span class="rev-val">${gv('email')}</span></div>
+      <div class="rev-row"><span class="rev-key">ID Type</span><span class="rev-val">${gv('idtype')||'—'}</span></div>
+      <div class="rev-row"><span class="rev-key">Preferred Doctor</span><span class="rev-val">${gv('doc')||'No preference'}</span></div>
+    </div>`;
+}
+
+// Submit
+document.getElementById('submit').addEventListener('click',function(){
+  this.classList.add('loading');this.disabled=true;
+  setTimeout(()=>{
+    const y=new Date().getFullYear(),r=String(Math.floor(Math.random()*90000)+10000);
+    document.getElementById('pid').textContent=`NHCH-${y}-${r}`;
+    document.getElementById('card-head').style.display='none';
+    document.querySelectorAll('.fstep').forEach(s=>s.style.display='none');
+    document.getElementById('suc').style.display='block';
+    for(let i=1;i<=4;i++){const si=document.getElementById('si'+i);si.classList.remove('active');si.classList.add('done');if(i<4)document.getElementById('cn'+i).classList.add('done')}
+    window.scrollTo({top:0,behavior:'smooth'});
+    this.classList.remove('loading');
+  },1800);
+});
+</script>
+</body>
+</html>
